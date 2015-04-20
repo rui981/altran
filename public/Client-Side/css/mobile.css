@@ -1,0 +1,269 @@
+/*----------------------------------------------------------------------*/
+
+.header {
+	background-color: rgba(26,161,225,1);
+	-webkit-box-shadow: 0px 0px 22px -6px black;
+	   -moz-box-shadow: 0px 0px 22px -6px black;
+	        box-shadow: 0px 0px 22px -6px black;
+}
+
+.container{
+	padding-bottom:150px; /* Height of the footer element */
+	overflow:auto;
+}
+
+.footer {
+	height:150px;
+	width:100%;
+	background-color: rgba(50, 50, 50, 1);
+	position:absolute;
+	bottom:0;
+	left:0;
+}
+
+/*-------------------------------------------------------------------------*/
+/*DRAWER ICON STUFF--------------------------------------------------------*/
+
+/* DrawerClosed */ 
+.drawer-hamburger{
+	margin-top: -15px;
+	padding: 26px;
+}
+
+.drawer-hamburger-icon{
+	height:2px;
+}
+
+.drawer-hamburger-icon::before{
+	height:2px;
+	margin-top: 3px;
+}
+
+.drawer-hamburger-icon::after{
+	height:2px;
+	margin-top: -3px;
+}
+
+/* DrawerOpen */
+.drawer-open .drawer-hamburger{
+	margin-top: -13px;
+}
+
+.drawer-open .drawer-hamburger-icon::before{
+	margin-top: -2px;
+}
+
+.drawer-open .drawer-hamburger-icon::after{
+	margin-top: -2px;
+}
+
+/*-------------------------------------------------------------------------*/
+/*SIDE BAR STUFF-----------------------------------------------------------*/
+
+		/* WIDTH SIDE BAR IS 280PX */
+		
+.client_info{
+	margin-top: 10px;
+	width: 100%;
+	
+	border-bottom: 1px solid rgba(40,40,40,1.0);
+	padding-bottom: 10px;
+}
+
+.client_info .client_logo{
+	width:80px;
+    height:80px;
+	
+    border-radius:80px;
+	border-style: solid;
+    border-color: rgba(255,255,255,0.8);
+	
+	margin: 0 auto;
+	
+    font-family: Arial,Helvetica,sans-serif;
+	font-size: 45px;
+	font-weight: bold;
+    color: white;
+	
+    line-height:80px;
+    text-align:center;
+	background: rgba(26,161,225,1);
+}
+
+.client_info .client_repname{
+	width:280px;
+	height: 20px;
+	
+	margin-top: 10px;
+	
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+    color: white;
+	
+    line-height:20px;
+    text-align:center;
+}
+
+.client_info .client_email{
+	width:280px;
+	height: 20px;
+	
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 16px;
+    color: rgba(26,161,225,1);
+	
+    line-height:20px;
+    text-align:center;
+}
+
+.drawer-menu{
+	
+}
+
+.drawer-menu .drawer-menu-item{
+	border-bottom: 1px solid rgba(40,40,40,1.0);	
+	padding: 15px 15px 15px;
+}
+
+.drawer-menu .drawer-menu-item a{
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 16px;
+    color: rgba(200,200,200,1.0) !important;
+	height: 20px;
+	line-height: 20px;
+	display: block;
+}
+
+.drawer-menu .drawer-menu-item:nth-last-child(1){
+	border-bottom: 0px solid rgba(40,40,40,1.0);	
+}
+
+.icon-home{
+	display:inline-block;
+	width: 17px;
+	height: 17px;
+	background-image: url("../img/icons/home.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+	
+	margin-right: 5px;
+	vertical-align: -2px;
+}
+	
+.drawer-footer{
+	width: 100%;
+	padding: 0 !important;
+}
+
+.drawer_logo{
+	display:block;
+	width: 70px;
+	height: 30px;
+	background-image: url("../img/logos/Logo_White.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+	
+	margin: 0 auto;
+}
+
+.company_info{
+	width: 100%;
+	border-top: 1px solid rgba(40,40,40,1.0);
+	padding-top: 10px;
+	margin-top: 15px;
+}
+
+.company_info .company_slogan{
+	margin-top: -5px;
+	width: 100%;
+	height: 15px;
+	
+	line-height: 10px;
+    text-align:center;
+	
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 12px;
+    color: white;
+}
+
+
+/*-------------------------------------------------------------------------*/
+/*TOP BAR STUFF------------------------------------------------------------*/
+
+.header_title{
+	width:100%;
+	height:25px;
+	line-height: 25px;
+	text-align:center;
+	color: white;
+	margin-top:12px;
+	
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+/*-------------------------------------------------------------------------*/
+/*LOGIN STUFF------------------------------------------------------------*/
+
+.login_partial .login_form{
+	width: 320px;
+	height: 440px;
+}
+
+.login_form .login_logo{
+	height: 200px;
+	width: 200px;
+}
+
+.login_form .login_title{
+    font-size: 35px;
+	margin-bottom: 40px;
+}
+
+.login_form .login_user{
+	width:320px;
+	height: 40px;
+}
+
+.login_form .login_user .login_user_name{
+	height: 20px;
+	width: 20px;
+}
+
+.login_form .login_pass{
+	width:320px;
+	height: 40px;
+}
+
+.login_form .login_pass .login_pass_name{
+	height: 20px;
+	width: 20px;
+}
+
+.login_form .login_pipe{
+	height: 20px;
+}
+
+.login_form .login_textarea{
+	display: inline-block;
+	width: 250px;
+	height: 40px;
+	line-height: 40px;
+    font-size: 16px;
+}
+
+.login_button{
+	display: block;
+	height:  40px;
+	width: 320px;
+    font-size: 16px;
+	line-height: 40px;
+}
+
+.login_button:hover{
+	
+}

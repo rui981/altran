@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Altran</title>
+		
+		<meta name="viewport" content="width=device-width, height=device-height">
+		
+		
+		<!-- DrawerCSS, DefaultCSS , MobileCSS -->
+		<link rel="stylesheet" href="css/drawer.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" media="(max-width:414px)" href="css/mobile.css">
+		
+		<!-- jquery , iScroll , dropdow, AngularJS, MD5 -->
+		<script src="js/jquery-1.11.2.js"></script>
+		<script src="js/iscroll.js"></script>
+		<script src="https://cdn.rawgit.com/ungki/bootstrap.dropdown/3.3.1/dropdown.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-rc.0/angular.js"></script>
+		<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
+		
+		<!-- AgularJS Controllers, AngularJS Routes , AngularJS Cookies -->
+		<script src="js/controller.js"></script>
+		<script src="js/angular-route.js"></script>
+		<script src="js/angular-cookies.js"></script>
+		
+		<!-- DrawerJS -->
+		<script src="js/jquery.drawer.min.js"></script>
+		<script>
+			$(document).ready(function() {
+			  $(".drawer").drawer();
+			});
+		</script>
+	
+	</head>
+
+	<body class="drawer drawer-left" ng-app="AltranWebApp" ng-controller='rootController'>
+		
+		<header role="banner">
+			<div class="drawer-header">
+				<button type="button" class="drawer-toggle drawer-hamburger" style="{{Global.buttonstyle}}">
+				  <span class="sr-only">Toggle Navigation</span> 
+				  <span class="drawer-hamburger-icon" ></span>
+				</button>
+			</div>
+
+			<div class="drawer-main drawer-default" >
+				<nav class="drawer-nav" role="navigation">
+				  
+				  <div class="client_info">
+					<div class="client_logo" style="background: rgb(192, 57, 43);">V</div>
+					<div class="client_repname">Vodafone</div>
+					<div class="client_email">cliente@vodafone.com</div>
+				  </div>
+				  
+				  <ul class="drawer-menu">
+					<li class="drawer-menu-item"><a href="./"><i class="icon-home"></i> Home</a></li>
+					<li class="drawer-menu-item"><a href="./base"> Login</a></li>
+					<li class="drawer-menu-item"><a href="./base"> Meus Projetos</a></li>
+					<li class="drawer-menu-item"><a href="./base">Rui</a></li>
+					<li class="drawer-menu-item"><a href="./base">Andre</a></li>
+				  </ul>
+				  
+				  <div class="drawer-footer">
+					<div class="company_info">
+						<a class='drawer_logo' href="http://www.altran.pt"></a>
+						<div class='company_slogan'>The Innovation Makers</div>
+					</div>
+				  </div>
+				</nav>
+			</div>
+		</header>
+		
+		<ng-view>
+		
+		</ng-view>
+	</body>
+	
+</html> 

@@ -1,0 +1,6 @@
+DRAWER LICENSE:
+	* Description: A small CSS3 and jQuery plugin for app style drawer menu.
+	* License: Copyright 2014-2015 Released under the MIT license.
+	* Web Links: 
+				- https://github.com/blivesta/drawer
+				- http://git.blivesta.com/drawer/
