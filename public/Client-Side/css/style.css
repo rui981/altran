@@ -1,13 +1,13 @@
 html,
 body{
-	margin:0;
-	padding:0;
-	height:100%;
-	background-color: white;
+  margin:0;
+  padding:0;
+  height:100%;
+  background-color: white;
 }
 
 .drawer-default{
-	background-color: rgba(50,50,50,1.0);
+  background-color: rgba(50,50,50,1.0);
 }
 
 /* FONTS ------------------------------------------------------------------------------------------------ */
@@ -22,37 +22,37 @@ body{
 /*----------------------------------------------------------------------*/
 
 .wrapper {
-	min-height:100%;
-	position:relative;
+  min-height:100%;
+  position:relative;
 }
 
 .header {
-	height: 50px;
-	width: 100%;
-	background-color: rgba(26,161,225,1);
-	-webkit-box-shadow: 0px 0px 15px -6px black;
-	   -moz-box-shadow: 0px 0px 15px -6px black;
-	        box-shadow: 0px 0px 15px -6px black;
+  height: 50px;
+  width: 100%;
+  background-color: rgba(26,161,225,1);
+  -webkit-box-shadow: 0px 0px 15px -6px black;
+  -moz-box-shadow: 0px 0px 15px -6px black;
+  box-shadow: 0px 0px 15px -6px black;
 }
 
 .container{
-	padding-bottom:90px; /* Height of the footer element */
-	overflow:auto;
+  padding-bottom:90px; /* Height of the footer element */
+  overflow:auto;
 }
 
 .footer {
-	height:100px;
-	width:100%;
-	background-color: rgba(50, 50, 50, 1);
-	position:absolute;
-	bottom:0;
-	left:0;
+  height:100px;
+  width:100%;
+  background-color: rgba(50, 50, 50, 1);
+  position:absolute;
+  bottom:0;
+  left:0;
 }
 
 
 input:focus{
-    outline: 0;
-	text-decoration: none;
+  outline: 0;
+  text-decoration: none;
 }
 
 /*--------------------------------------------------------------*/
@@ -60,35 +60,36 @@ input:focus{
 
 .login_partial
 {
-	height:100%;
-	width: 100%;
-	
-	min-height: 520px;
-	
-	background: url(../img/backgrounds/login_back4.jpg);
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position:center center;
-	background-attachment: fixed;
-	
-	position: absolute;
-    top:0;
-    bottom:0;
-    right:0;
-    left:0;
-    overflow:auto;
+  height:100%;
+  width: 100%;
+
+  min-height: 520px;
+  background: -webkit-linear-gradient(#16addb, #2a4991); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#16addb, #2a4991); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#16addb, #2a4991); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#16addb, #2a4991); /* Standard syntax */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position:center center;
+  background-attachment: fixed;
+  position: absolute;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
+  overflow:auto;
 }
 
 .user_partial
 {
-	height:100%;
-	width: 100%;
-	
-	background: url(../img/backgrounds/user_back.jpg);
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position:center center;
-	background-attachment: fixed;
+  height:100%;
+  width: 100%;
+
+  background: url(../img/backgrounds/user_back.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position:center center;
+  background-attachment: fixed;
 }
 
 
@@ -97,311 +98,297 @@ input:focus{
 
 /* DrawerClosed */ 
 .drawer-hamburger{
-	margin-top: -10px;
+  margin-top: -10px;
 }
 
 .drawer-hamburger-icon{
-	background-color: white;
+  background-color: white;
 }
 
 .drawer-hamburger-icon::before{
-	background-color: white;
+  background-color: white;
 }
 
 .drawer-hamburger-icon::after{
-	background-color: white;
+  background-color: white;
 }
 
 /* DrawerOpen */
 .drawer-open .drawer-hamburger{
-	
+
 }
 
 .drawer-open .drawer-hamburger-icon::before{
-	background-color: white;
+  background-color: white;
 }
 
 .drawer-open .drawer-hamburger-icon::after{
-	background-color: white;
+  background-color: white;
 }
 
 /*-------------------------------------------------------------------------*/
 /*SIDE BAR STUFF-----------------------------------------------------------*/
 
-		/* WIDTH SIDE BAR IS 280PX */
-		
+/* WIDTH SIDE BAR IS 280PX */
+
 .client_info{
-	margin-top: 10px;
-	width: 100%;
-	
-	border-bottom: 1px solid rgba(40,40,40,1.0);
-	padding-bottom: 10px;
+  margin-top: 10px;
+  width: 100%;
+
+  border-bottom: 1px solid rgba(40,40,40,1.0);
+  padding-bottom: 10px;
 }
 
 .client_info .client_logo{
-	width:80px;
-    height:80px;
-	
-    border-radius:80px;
-	border-style: solid;
-    border-color: rgba(255,255,255,0.8);
-	
-	margin: 0 auto;
-	
-    font-family: Arial,Helvetica,sans-serif;
-	font-size: 45px;
-	font-weight: bold;
-    color: white;
-	
-    line-height:80px;
-    text-align:center;
-	background: rgba(26,161,225,1);
+  width:80px;
+  height:80px;
+
+  border-radius:80px;
+  border-style: solid;
+  border-color: rgba(255,255,255,0.8);
+
+  margin: 0 auto;
+
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 45px;
+  font-weight: bold;
+  color: white;
+
+  line-height:80px;
+  text-align:center;
+  background: rgba(26,161,225,1);
 }
 
 .client_info .client_repname{
-	width:280px;
-	height: 20px;
-	
-	margin-top: 10px;
-	
-	font-family: Arial,Helvetica,sans-serif;
-	font-size: 16px;
-	font-weight: bold;
-    color: white;
-	
-    line-height:20px;
-    text-align:center;
+  width:280px;
+  height: 20px;
+
+  margin-top: 10px;
+
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+
+  line-height:20px;
+  text-align:center;
 }
 
 .client_info .client_email{
-	width:280px;
-	height: 20px;
-	
-	font-family: Arial,Helvetica,sans-serif;
-	font-size: 16px;
-    color: rgba(26,161,225,1);
-	
-    line-height:20px;
-    text-align:center;
+  width:280px;
+  height: 20px;
+
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 16px;
+  color: rgba(26,161,225,1);
+
+  line-height:20px;
+  text-align:center;
 }
 
 .drawer-menu{
-	
+
 }
 
 .drawer-menu .drawer-menu-item{
-	border-bottom: 1px solid rgba(40,40,40,1.0);	
-	padding: 15px 15px 15px;
+  border-bottom: 1px solid rgba(40,40,40,1.0);	
+  padding: 15px 15px 15px;
 }
 
 .drawer-menu .drawer-menu-item a{
-	font-family: Arial,Helvetica,sans-serif;
-	font-size: 16px;
-    color: rgba(200,200,200,1.0) !important;
-	height: 20px;
-	line-height: 20px;
-	display: block;
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 16px;
+  color: rgba(200,200,200,1.0) !important;
+  height: 20px;
+  line-height: 20px;
+  display: block;
 }
 
 .drawer-menu .drawer-menu-item:nth-last-child(1){
-	border-bottom: 0px solid rgba(40,40,40,1.0);	
+  border-bottom: 0px solid rgba(40,40,40,1.0);	
 }
 
 .icon-home{
-	display:inline-block;
-	width: 17px;
-	height: 17px;
-	background-image: url("../img/icons/home.png");
-	background-repeat: no-repeat;
-	background-size: contain;
-	background-position: center center;
-	
-	margin-right: 5px;
-	vertical-align: -2px;
+  display:inline-block;
+  width: 17px;
+  height: 17px;
+  background-image: url("../img/icons/home.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+
+  margin-right: 5px;
+  vertical-align: -2px;
 }
-	
+
 .drawer-footer{
-	width: 100%;
-	padding: 0 !important;
+  width: 100%;
+  padding: 0 !important;
 }
 
 .drawer_logo{
-	display:block;
-	width: 70px;
-	height: 30px;
-	background-image: url("../img/logos/Logo_White.png");
-	background-repeat: no-repeat;
-	background-size: contain;
-	background-position: center center;
-	
-	margin: 0 auto;
+  display:block;
+  width: 70px;
+  height: 30px;
+  background-image: url("../img/logos/Logo_White.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+
+  margin: 0 auto;
 }
 
 .company_info{
-	width: 100%;
-	border-top: 1px solid rgba(40,40,40,1.0);
-	padding-top: 10px;
-	margin-top: 15px;
+  width: 100%;
+  border-top: 1px solid rgba(40,40,40,1.0);
+  padding-top: 10px;
+  margin-top: 15px;
 }
 
 .company_info .company_slogan{
-	margin-top: -5px;
-	width: 100%;
-	height: 15px;
-	
-	line-height: 10px;
-    text-align:center;
-	
-	font-family: Arial,Helvetica,sans-serif;
-	font-size: 12px;
-    color: white;
+  margin-top: -5px;
+  width: 100%;
+  height: 15px;
+
+  line-height: 10px;
+  text-align:center;
+
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 12px;
+  color: white;
 }
 
 /*-------------------------------------------------------------------------*/
 /*TOP BAR STUFF------------------------------------------------------------*/
 
 .header_title{
-	display: inline-block;
-	width:100%;
-	height:25px;
-	line-height: 25px;
-	text-align:center;
-	color: white;
-	margin-top:12px;
-	
-	font-family: Arial,Helvetica,sans-serif;
-	font-size: 16px;
-	font-weight: bold;
+  display: inline-block;
+  width:100%;
+  height:25px;
+  line-height: 25px;
+  text-align:center;
+  color: white;
+  margin-top:12px;
+
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 /*-------------------------------------------------------------------------*/
 /*LOGIN STUFF------------------------------------------------------------*/
 
 .login_partial .login_form{
-	width: 400px;
-	height: 510px;
-	
-	margin: auto;
-	position: absolute;
-	top: 0; left: 0; bottom: 0; right: 0;
+  width: 400px;
+  height: 510px;
+
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
 }
 
 .login_form .login_logo{
-	display: block;
-	height: 225px;
-	width: 225px;
-	
-	background: url(../img/logos/Login_Logo.png);
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position:center center;
-	
-	margin: 0 auto;
-	margin-bottom: 0px;
-}
+  display: block;
+  height: 225px;
+  width: 225px;
 
-.login_form .login_title{
-	height: 35px;
-	display: block;
-	font-family: LUCIDA;
-    font-size: 45px;
-	/*color: rgb(120,120,120);*/
-	color: white;
-	line-height: 35px;
-	
-	text-align:center;
-	margin-bottom: 70px;
-	
+  background: url(../img/logos/Login_Logo.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position:center center;
+
+  margin: 0 auto;
+  margin-bottom: 0px;
 }
 
 .login_form .login_user{
-	width:400px;
-	height: 45px;
-	background-color: rgba(255,255,255,0.4);
+  width:400px;
+  height: 45px;
+  border: 1px solid #fff;
 }
 
 .login_form .login_user .login_user_name{
-	height: 25px;
-	width: 25px;
-	display: inline-block;
-	
-	background: url(../img/icons/user_white_icon.png);
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position:center center;
+  height: 25px;
+  width: 25px;
+  display: inline-block;
 
-	margin-left: 10px;
-	margin-top: 10px;
+  background: url(../img/icons/user_white_icon.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position:center center;
+
+  margin-left: 10px;
+  margin-top: 10px;
 }
 
 .login_form .login_pass{
-	width:400px;
-	height: 45px;
-	background-color: rgba(255,255,255,0.4);
-	margin-top: 20px;
+  width:400px;
+  height: 45px;
+  margin-top: 20px;
+  border: 1px solid #fff;
 }
 
 .login_form .login_pass .login_pass_name{
-	height: 25px;
-	width: 25px;
-	display: inline-block;
-	
-	background: url(../img/icons/password_white_icon.png);
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position:center center;
+  height: 25px;
+  width: 25px;
+  display: inline-block;
 
-	margin-left: 10px;
-	margin-top: 10px;
-	
+  background: url(../img/icons/password_white_icon.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position:center center;
+
+  margin-left: 10px;
+  margin-top: 10px;
+
 }
 
 .login_form .login_pipe{
-	display: inline-block;
-	height: 25px;
-	width: 1px;
-	background-color: white;
-	vertical-align: top;
-	margin-top: 10px;
-	margin-left: 10px;
-	
+  display: inline-block;
+  height: 25px;
+  width: 1px;
+  background-color: white;
+  vertical-align: top;
+  margin-top: 10px;
+  margin-left: 10px;
+
 }
 
 .login_form .login_textarea{
-	display: inline-block;
-	width: 300px;
-	height: 45px;
-	background-color: rgba(255,255,255,0.0);
-	border: none;
-	resize: none;
-	line-height: 50px;
-	vertical-align: top;
-	
-	font-family: LUCIDA;
-    font-size: 18px;
-	color:white;
-	
-	margin-top: -1px;
-	margin-left: 10px;
+  display: inline-block;
+  width: 300px;
+  height: 45px;
+  background-color: rgba(255,255,255,0.0);
+  border: none;
+  resize: none;
+  line-height: 50px;
+  vertical-align: top;
+
+  font-family: LUCIDA;
+  font-size: 18px;
+  color:white;
+
+  margin-top: -1px;
+  margin-left: 10px;
 }
 
 .login_button{
-	display: block;
-	height:  45px;
-	width: 400px;
-	font-family: LUCIDA;
-    font-size: 18px;
-	color:rgb(120,120,120);
-	line-height: 45px;
-	text-align: center;
-	margin: 0 auto;
-	margin-top: 25px;
-	background-color: white;
-	transition: all 0.3s ease 0s;
+  display: block;
+  height:  45px;
+  width: 400px;
+  font-family: LUCIDA;
+  font-size: 18px;
+  color:rgb(120,120,120);
+  line-height: 45px;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 25px;
+  background-color: white;
+  transition: all 0.3s ease 0s;
 }
 
 .login_button:hover{
-	cursor:pointer;
-	background-color: rgba(120,120,120,0.7);
-	color:white;
+  cursor:pointer;
+  background-color: rgba(120,120,120,0.7);
+  color:white;
 }
