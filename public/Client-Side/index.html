@@ -48,17 +48,16 @@
 				<nav class="drawer-nav" role="navigation">
 				  
 				  <div class="client_info">
-					<div class="client_logo" style="background: rgb(192, 57, 43);">V</div>
-					<div class="client_repname">Vodafone</div>
-					<div class="client_email">cliente@vodafone.com</div>
+					<div class="client_logo" style="background: rgb(192, 57, 43);">{{Global.fLetter}}</div>
+					<div class="client_repname">{{Global.username}}</div>
+					<div class="client_email">{{Global.email}}</div>
 				  </div>
 				  
 				  <ul class="drawer-menu">
 					<li class="drawer-menu-item"><a href="./"><i class="icon-home"></i> Home</a></li>
-					<li class="drawer-menu-item"><a href="./base"> Login</a></li>
 					<li class="drawer-menu-item"><a href="./base"> Meus Projetos</a></li>
-					<li class="drawer-menu-item"><a href="./base">Rui</a></li>
-					<li class="drawer-menu-item"><a href="./base">Andre</a></li>
+					<li class="drawer-menu-item"><a href="./base"> Rui</a></li>
+					<li class="drawer-menu-item" ng-click="logout()"> Logout</li>
 				  </ul>
 				  
 				  <div class="drawer-footer">

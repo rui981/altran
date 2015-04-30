@@ -12,6 +12,19 @@ app.config( function($routeProvider)
 		.when("/parameters/:Id1/:Id2", {templateUrl: 'partials/parameters.html', controller: 'parametersController2'});
 });
 
+app.run(function($rootScope,$cookies,$location) {
+	$rootScope.logout = function() 
+	{
+		$cookies.remove("userid");
+		$cookies.remove("username");
+		$cookies.remove("email");
+		
+		$('.drawer').drawer('close');
+		
+		$location.path(""); 
+	};
+});
+
 
 app.controller('rootController', function($scope,Global)
 {
@@ -45,7 +58,14 @@ app.controller('loginController', function($scope,$location,$routeParams,$timeou
 		  {
 			var now = new Date();
 			var exp = new Date(now.getFullYear()+1, now.getMonth(), now.getDate());
+			
 			$cookies.put("userid", data.id, {expires: exp});
+			$cookies.put("username", username, {expires: exp});
+			$cookies.put("email", data.email, {expires: exp});
+			
+			$scope.Global.username = username;
+			$scope.Global.email = data.email;
+			$scope.Global.fLetter = username.charAt(0);
 			
 			$location.path("home"); 
 			$timeout(function () { $scope.currentPath = $location.path();
@@ -57,6 +77,20 @@ app.controller('loginController', function($scope,$location,$routeParams,$timeou
 		  }
 		});
 	}
+	
+	if($cookies.get("userid") != undefined || $cookies.get("userid") != null)
+	{	
+		console.log($cookies.get("userid"));
+		var uname = $cookies.get("username");
+		var email = $cookies.get("email");
+		
+		$scope.Global.username = uname.toUpperCase();
+		$scope.Global.email = email;
+		$scope.Global.fLetter = uname.charAt(0);
+				
+		$location.path("home"); 
+	}
+
 });
 
 app.controller('homeController', function($scope,$routeParams,$cookies,Global)
@@ -64,7 +98,15 @@ app.controller('homeController', function($scope,$routeParams,$cookies,Global)
 	$scope.Global = Global;
 	$scope.Global.buttonstyle = "";
 	
-	//alert($cookies.get("userid"));
+	var apiurl = "http://altran.sytes.net/projects/" + $cookies.get("userid");
+
+	$.get(apiurl).then( function(response)
+	{
+		$scope.$apply(function () {
+			$scope.projectos = response;
+        });	
+	  
+	});
 });
 
 app.controller('parametersController', function($scope,$routeParams,$window)
