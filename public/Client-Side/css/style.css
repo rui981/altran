@@ -72,7 +72,6 @@ input:focus{
   background-size: cover;
   background-position:center center;
   background-attachment: fixed;
-
   position: absolute;
   top:0;
   bottom:0;
@@ -302,24 +301,10 @@ input:focus{
   margin-bottom: 0px;
 }
 
-.login_form .login_title{
-  height: 35px;
-  display: block;
-  font-family: LUCIDA;
-  font-size: 45px;
-  /*color: rgb(120,120,120);*/
-  color: white;
-  line-height: 35px;
-
-  text-align:center;
-  margin-bottom: 70px;
-
-}
-
 .login_form .login_user{
   width:400px;
   height: 45px;
-  background-color: rgba(255,255,255,0.4);
+  border: 1px solid #fff;
 }
 
 .login_form .login_user .login_user_name{
@@ -339,8 +324,8 @@ input:focus{
 .login_form .login_pass{
   width:400px;
   height: 45px;
-  background-color: rgba(255,255,255,0.4);
   margin-top: 20px;
+  border: 1px solid #fff;
 }
 
 .login_form .login_pass .login_pass_name{
