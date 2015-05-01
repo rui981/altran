@@ -4,6 +4,7 @@ body{
   padding:0;
   height:100%;
   background-color: white;
+  overflow: hidden;
 }
 
 .drawer-default{
@@ -410,14 +411,19 @@ input:focus{
 }
 
 /** Rating Forms **/
-
-.form_question {
+.form_partial {
   font-family: 'Lucida Sans';
   font-size: 10px;
+}
+.form_question {
   border-bottom: 1px solid rgba(255, 255, 255, 0.75);
   border-top: 1px solid rgba(255, 255, 255, 0.75);
-  height: 25px;
+  height: 40px;
   margin: 10px;
+}
+.form_question > span {
+  width: 100%;
+  float: left;
 }
 .rating {
   float: right;
@@ -436,7 +442,7 @@ input:focus{
   width:24px;
   height:16px;
   line-height:16px;
-  padding: 10px 22px 1px 0;
+  padding: 0px 22px 0px 0;
   background:url(../img/icons/triangles.png) no-repeat 0px 0;
 }
 
