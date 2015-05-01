@@ -8,6 +8,7 @@ app.config( function($routeProvider)
 	$routeProvider
 		.when("/", {templateUrl:'partials/login.html', controller:'loginController'})
 		.when("/home", {templateUrl:'partials/home.html', controller:'homeController'})
+        .when("/form", {templateUrl:'partials/form.html', controller:'formController'})
 		.when("/parameters/:Id", {templateUrl: 'partials/parameters.html', controller: 'parametersController'})
 		.when("/parameters/:Id1/:Id2", {templateUrl: 'partials/parameters.html', controller: 'parametersController2'});
 });

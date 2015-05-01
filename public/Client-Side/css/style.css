@@ -10,6 +10,10 @@ body{
   background-color: rgba(50,50,50,1.0);
 }
 
+.hide {
+  display:none;
+}
+
 /* FONTS ------------------------------------------------------------------------------------------------ */
 
 @font-face
@@ -26,10 +30,10 @@ body{
   position:relative;
 }
 
-.header {
+header {
   height: 50px;
   width: 100%;
-  background-color: rgba(26,161,225,1);
+  background-color: #e9e5dc;
   -webkit-box-shadow: 0px 0px 15px -6px black;
   -moz-box-shadow: 0px 0px 15px -6px black;
   box-shadow: 0px 0px 15px -6px black;
@@ -38,6 +42,15 @@ body{
 .container{
   padding-bottom:90px; /* Height of the footer element */
   overflow:auto;
+  background: -webkit-linear-gradient(#16addb, #2a4991); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#16addb, #2a4991); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#16addb, #2a4991); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#16addb, #2a4991); /* Standard syntax */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position:center center;
+  background-attachment: fixed;
+  height: 80%;
 }
 
 .footer {
@@ -98,19 +111,19 @@ input:focus{
 
 /* DrawerClosed */ 
 .drawer-hamburger{
-  margin-top: -10px;
+  margin-top: -15px;
 }
 
 .drawer-hamburger-icon{
-  background-color: white;
+  background-color: #16addb;
 }
 
 .drawer-hamburger-icon::before{
-  background-color: white;
+  background-color: #16addb;
 }
 
 .drawer-hamburger-icon::after{
-  background-color: white;
+  background-color: #16addb;
 }
 
 /* DrawerOpen */
@@ -119,11 +132,11 @@ input:focus{
 }
 
 .drawer-open .drawer-hamburger-icon::before{
-  background-color: white;
+  background-color: #16addb;
 }
 
 .drawer-open .drawer-hamburger-icon::after{
-  background-color: white;
+  background-color: #16addb;
 }
 
 /*-------------------------------------------------------------------------*/
@@ -264,14 +277,17 @@ input:focus{
 .header_title{
   display: inline-block;
   width:100%;
-  height:25px;
-  line-height: 25px;
-  text-align:center;
-  color: white;
-  margin-top:12px;
-
-  font-family: Arial,Helvetica,sans-serif;
-  font-size: 16px;
+  line-height: 50px;
+  text-align: right;
+}
+.header_title span {
+  margin-right: 12px;
+  color: #16addb;
+  font-family: 'Lucida Sans';
+  font-size: 15px;
+}
+.header_title span b{
+  font-size: 25px;
   font-weight: bold;
 }
 
@@ -392,3 +408,43 @@ input:focus{
   background-color: rgba(120,120,120,0.7);
   color:white;
 }
+
+/** Rating Forms **/
+
+.form_question {
+  font-family: 'Lucida Sans';
+  font-size: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.75);
+  border-top: 1px solid rgba(255, 255, 255, 0.75);
+  height: 25px;
+  margin: 10px;
+}
+.rating {
+  float: right;
+}
+.rating input {
+  position:absolute;
+  filter:alpha(opacity=0);
+  -moz-opacity:0;
+  -khtml-opacity:0;
+  opacity:0;
+  cursor:pointer;
+  width:17px;
+}
+
+.rating span {
+  width:24px;
+  height:16px;
+  line-height:16px;
+  padding: 10px 22px 1px 0;
+  background:url(../img/icons/triangles.png) no-repeat 0px 0;
+}
+
+.rating input:checked + span {
+  background-position:0px 0;
+}
+
+.rating input:checked + span ~ span {
+  background-position:-22px 0;
+}
+
