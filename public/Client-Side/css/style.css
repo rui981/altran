@@ -43,14 +43,20 @@ header {
 .container{
   padding-bottom:90px; /* Height of the footer element */
   overflow:auto;
-  background: -webkit-linear-gradient(#16addb, #2a4991); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(#16addb, #2a4991); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#16addb, #2a4991); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(#16addb, #2a4991); /* Standard syntax */
+  /*background: -webkit-linear-gradient(#16addb, #2a4991);
+  background: -o-linear-gradient(#16addb, #2a4991);
+  background: -moz-linear-gradient(#16addb, #2a4991);
+  background: linear-gradient(#16addb, #2a4991);
   background-repeat: no-repeat;
   background-size: cover;
   background-position:center center;
-  background-attachment: fixed;
+  background-attachment: fixed;*/
+  background-color: #fff;
+  background: url(../img/backgrounds/background.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   height: 80%;
 }
 
@@ -413,20 +419,80 @@ input:focus{
 /** Rating Forms **/
 .form_partial {
   font-family: 'Lucida Sans';
-  font-size: 10px;
+  font-size: 0.75em;
+  color: #16addb;
+  margin: 5px;
 }
-.form_question {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.75);
-  border-top: 1px solid rgba(255, 255, 255, 0.75);
-  height: 40px;
-  margin: 10px;
+.form_title {
+  font-size: 1em;
+  font-weight: bold;
+  text-align: center;
+  height: 30px;
 }
-.form_question > span {
+.form_title > span {
   width: 100%;
   float: left;
 }
+.form_header {
+  width: 100%;
+  height: 200px;
+  padding: 10px;
+}
+.form_header > .form_header_section {
+  height: 60px;
+  position: relative;
+  float: left;
+  width: 100%;
+  margin-top: 10px;
+}
+.form_header_section > span {
+  color: #8C8C8C;
+  font-size: 1em;
+  font-weight: bold;
+  width: 100%;
+  float: left;
+}
+div.project_info_1-1 {
+  width: 100%;
+}
+div.project_info_1-1 > span {
+  width: 100%;
+  float: left;
+}
+div.project_info_1-2 {
+  width: 50%;
+  float: left;
+}
+div.project_info_1-2 > span{
+  width: 100%;
+  float: left;
+}
+.form_question {
+  border-bottom: 1px solid rgba(22, 173, 219, 0.8);
+  border-top: 1px solid rgba(22, 173, 219, 0.8);
+  min-height: 40px;
+  margin-top: 10px;
+  float: left;
+  width: 100%;
+}
+.form_last_question {
+  border-bottom: 1px solid rgba(22, 173, 219, 0.8);
+  border-top: 1px solid rgba(22, 173, 219, 0.8);
+  min-height: 50px;
+  margin-top: 10px;
+  float: left;
+  width: 100%;
+}
+.form_question > span {
+  width: 260px;
+  float: left;
+  height: 20px;
+  padding-left: 10px;
+  color: #8C8C8C;
+}
 .rating {
   float: right;
+  position: relative;
 }
 .rating input {
   position:absolute;
@@ -437,7 +503,6 @@ input:focus{
   cursor:pointer;
   width:17px;
 }
-
 .rating span {
   width:24px;
   height:16px;
@@ -445,7 +510,6 @@ input:focus{
   padding: 0px 22px 0px 0;
   background:url(../img/icons/triangles.png) no-repeat 0px 0;
 }
-
 .rating input:checked + span {
   background-position:0px 0;
 }
@@ -453,4 +517,42 @@ input:focus{
 .rating input:checked + span ~ span {
   background-position:-22px 0;
 }
-
+.submit_button{
+  font-family: LUCIDA;
+  color:rgb(120,120,120);
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 25px;
+  background-color: white;
+  transition: all 0.3s ease 0s;
+  display: block;
+  height:  40px;
+  width: 320px;
+  font-size: 16px;
+  line-height: 40px;
+}
+.submit_button:hover{
+  cursor:pointer;
+  background-color: rgba(120,120,120,0.7);
+  color:white;
+}
+.unsatisfaction {
+  height: 180px;
+  float: left;
+  width: 100%;
+  background-color: rgba(140, 140, 140, 0.4);
+  margin-top: 5px;
+}
+.unsatisfaction span {
+  width: 100%;
+  float: left;
+  padding-left: 5px;
+  color: #8C8C8C;
+}
+.unsatisfaction i {
+  float: right;
+}
+.unsatisfaction span > textarea {
+  width: 335px;
+  
+}
