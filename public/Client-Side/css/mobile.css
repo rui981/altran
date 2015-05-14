@@ -1,3 +1,11 @@
+/* FONTS ------------------------------------------------------------------------------------------------ */
+
+@font-face
+{
+  font-family: LUCIDA;
+  src: url(../fonts/LucidaSansRegular.ttf);
+}
+
 /*----------------------------------------------------------------------*/
 
 .header {
@@ -8,7 +16,7 @@
 }
 
 .container{
-	padding-bottom:150px; /* Height of the footer element */
+	padding-bottom:50px; /* Height of the footer element */
 	overflow:auto;
 }
 
@@ -267,3 +275,143 @@
 .login_button:hover{
 	
 }
+
+/* MY Projects */
+
+.project_container{
+	max-width: 100%;
+	margin-left: 10px;
+	margin-right: 10px;
+	
+	border-radius: 5px;
+	border: 1px solid rgb(125,143,148);
+}
+
+.project_container{
+	max-width: 100%;
+	margin-left: 10px;
+	margin-right: 10px;
+	
+	border-radius: 5px;
+	border: 1px solid rgb(125,143,148);
+	
+	margin-bottom: 10px;
+}
+
+.project_container .project_title{
+	display: inline-block;
+	margin-left: 10px;
+	margin-top: 10px;
+	padding-left: 2px;
+	padding-right: 2px;
+	border-radius: 2px;
+	border: 1px solid rgb(9,113,206);
+	
+	color: rgb(9,113,206);
+	font-family: 'Lucida Sans';
+	font-size: 12px;
+  
+}
+
+.project_container .project_name{
+	display: inline-block;
+	margin-left: 5px;
+	margin-top: 10px;
+
+	color: rgb(63,72,75);
+	font-family: 'Lucida Sans';
+	font-size: 15px;
+  
+}
+
+.project_container .project_assdate{
+	display: inline-block;
+	margin-right: 10px;
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-left: 2px;
+	padding-right: 2px;
+	border-radius: 2px;
+	border: 1px solid rgb(9,113,206);
+	
+	background-color: rgb(9,113,206);
+	color: white;
+	font-family: 'Lucida Sans';
+	font-size: 12px;
+  
+}
+
+.project_container .project_date{
+	display: inline-block;
+	width: 90px;
+	margin-top: 10px;
+	
+	vertical-align: top;
+
+	color: rgb(63,72,75);
+	font-family: 'Lucida Sans';
+	font-size: 15px;
+	
+	overflow: hidden;
+  
+}
+
+.project_container .project_typeadm{
+	display: inline-block;
+	margin-right: 10px;
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-left: 2px;
+	padding-right: 2px;
+	border-radius: 2px;
+	border: 1px solid rgb(9,113,206);
+	
+	background-color: rgb(9,113,206);
+	color: white;
+	font-family: 'Lucida Sans';
+	font-size: 12px;
+  
+}
+
+.project_container .project_adm{
+	display: inline-block;
+	width: 50px;
+	margin-right: 10px;
+	margin-top: 10px;
+
+	color: rgb(63,72,75);
+	font-family: 'Lucida Sans';
+	font-size: 15px;
+  
+}
+
+.project_container .project_disp{
+	float:right;
+	margin-top: 10px;
+	margin-right: 10px;
+	padding-left: 2px;
+	padding-right: 2px;
+	border-radius: 2px;
+	border: 1px solid rgb(9,113,206);
+	
+	color: rgb(9,113,206);
+	font-family: 'Lucida Sans';
+	font-size: 12px;
+  
+}
+
+.project_container .project_dispGreen{
+	float:right;
+	margin-top: 15px;
+	margin-right: 10px;
+	border-radius: 50%;
+	width: 10px;
+	height: 10px; 
+	background-color: rgb(46, 204, 113);
+}
+
+
+
+

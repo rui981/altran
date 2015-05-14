@@ -44,14 +44,14 @@ app.controller('loginController', function($scope,$location,$routeParams,$timeou
     var password = document.getElementById("login_password").value;
 
     var apiurl = "http://altran.sytes.net/user/" + '"' + username + '"';
-    // Enquanto falta MD5 na base de dados : var passwordhash = CryptoJS.MD5(password);
-    var passwordhash = password;
+    var passwordhash = CryptoJS.MD5(password).toString();
+	passwordhash = passwordhash.substring(0,15); //esta linha tem de sair
     var canRedirect = false;
 
     $.get(apiurl).then( function(response)
                        {
       var data = response[0];
-
+	
       if(data.pass == passwordhash)
       {
         var now = new Date();
@@ -95,10 +95,15 @@ app.controller('homeController', function($scope,$routeParams,$cookies,Global) {
   $scope.Global = Global;
   $scope.Global.buttonstyle = "";
 
-  var apiurl = "http://altran.sytes.net/projects/" + $cookies.get("userid");
+  var apiurl = "http://altran.sytes.net/allProjects/" + $cookies.get("userid");
 
+  //allProjects/id -> da-me todos os projetos dum gajo
+  //unProjects/id -> os que ainda 
+  //auProjects/id -> todos os projectos nao respondidos por um gajo.
+  
   $.get(apiurl).then( function(response)
-                     {
+  {
+	console.log(response);
     $scope.$apply(function () {
       $scope.projectos = response;
     });	

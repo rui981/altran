@@ -1,9 +1,54 @@
 <div class='container'>
-	<div ng-repeat="p in projectos">
+	<div class="project_container">
 		<div>
-			<div>Nome -> {{p.title}}</div>
-			<div>id_Project -> {{p.id_project}}</div>
-			<div>id_SF -> {{p.id_sf}}</div>
+			<div class="project_title">PROJETO</div>
+			<div class="project_name">Sonae La La La</div>
+			
+			<div class="project_dispGreen"></div>
+			<div class="project_disp">DISP</div>
+		</div>
+		
+		<div>
+			<div class="project_assdate">DATA</div>
+			<div class="project_date">21-05-2015</div>
+			
+			<div class="project_typeadm">TIPO</div>
+			<div class="project_adm">ADM1</div>
+		</div>
+	</div>
+	<div class="project_container">
+		<div>
+			<div class="project_title">PROJETO</div>
+			<div class="project_name">Sonae La La La</div>
+			
+			<div class="project_dispGreen"></div>
+			<div class="project_disp">DISP</div>
+		</div
+		
+		<div>
+			<div class="project_assdate">DATA</div>
+			<div class="project_date">21-05-2015</div>
+		</div>
+	</div>
+	<div ng-repeat="p in projectos">
+		<div class="project_container">
+			<div>
+				<div class="project_title">PROJETO</div>
+				<div class="project_name">{{p.title}}</div>
+				
+				<div class="project_dispGreen"></div>
+				<div class="project_disp">DISP</div>
+			</div>
+			
+			<div>
+				<div class="project_assdate">DATA</div>
+				<div class="project_date">{{p.assessment_Date}}</div>
+				
+				<div class="project_typeadm">TIPO</div>
+				<div ng-if="p.id_sf == 0" class="project_adm">ADM1</div>
+				<div ng-if="p.id_sf == 1" class="project_adm">ADM1</div>
+			<div>
+			
 		</div>
 	</div>
 </div>

@@ -38,35 +38,22 @@ header {
   -webkit-box-shadow: 0px 0px 15px -6px black;
   -moz-box-shadow: 0px 0px 15px -6px black;
   box-shadow: 0px 0px 15px -6px black;
+  position: absolute;
 }
 
 .container{
-  padding-bottom:90px; /* Height of the footer element */
+  padding-bottom:100px; /* Height of the footer element */
   overflow:auto;
-  /*background: -webkit-linear-gradient(#16addb, #2a4991);
-  background: -o-linear-gradient(#16addb, #2a4991);
-  background: -moz-linear-gradient(#16addb, #2a4991);
-  background: linear-gradient(#16addb, #2a4991);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position:center center;
-  background-attachment: fixed;*/
-  background-color: #fff;
-  background: url(../img/backgrounds/background.png) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  height: 80%;
+  margin-top: 60px;
 }
 
 .footer {
-  height:100px;
-  width:100%;
-  background-color: rgba(50, 50, 50, 1);
-  position:absolute;
-  bottom:0;
-  left:0;
+	height:100px;
+	width:100%;
+	background-color: rgba(50, 50, 50, 1);
+	position:absolute;
+	bottom:0;
+	left:0;
 }
 
 
@@ -213,15 +200,26 @@ input:focus{
 .drawer-menu .drawer-menu-item{
   border-bottom: 1px solid rgba(40,40,40,1.0);	
   padding: 15px 15px 15px;
-}
-
-.drawer-menu .drawer-menu-item a{
+  
   font-family: Arial,Helvetica,sans-serif;
   font-size: 16px;
   color: rgba(200,200,200,1.0) !important;
   height: 20px;
   line-height: 20px;
   display: block;
+}
+
+.drawer-menu .drawer-menu-item:hover{
+	cursor: pointer;
+}
+
+.drawer-menu .drawer-menu-item a{
+  /*font-family: Arial,Helvetica,sans-serif;
+  font-size: 16px;
+  color: rgba(200,200,200,1.0) !important;
+  height: 20px;
+  line-height: 20px;
+  display: block;*/
 }
 
 .drawer-menu .drawer-menu-item:nth-last-child(1){
@@ -317,11 +315,11 @@ input:focus{
 
   background: url(../img/logos/Login_Logo.png);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   background-position:center center;
 
   margin: 0 auto;
-  margin-bottom: 0px;
+  margin-bottom: 10px;
 }
 
 .login_form .login_user{
@@ -556,3 +554,15 @@ div.project_info_1-2 > span{
   width: 335px;
   
 }
+
+/* MY Projects */
+
+.project_container{
+	max-width: 100%;
+	margin-left: 10px;
+	margin-right: 10px;
+	
+	border-radius: 5px;
+	border: 1px solid rgb(125,143,148);
+}
+
