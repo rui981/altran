@@ -34,6 +34,7 @@
 
 /* DrawerClosed */ 
 .drawer-hamburger{
+	width: 75px;
 	margin-top: -15px;
 	padding: 26px;
 }
@@ -65,6 +66,10 @@
 	margin-top: -2px;
 }
 
+.drawer-left.drawer-open .drawer-hamburger
+{
+	transform: translateX(0px) translateY(0px);
+}
 /*-------------------------------------------------------------------------*/
 /*SIDE BAR STUFF-----------------------------------------------------------*/
 
@@ -209,9 +214,8 @@
 	color: white;
 	margin-top:12px;
 	
-	font-family: Arial,Helvetica,sans-serif;
-	font-size: 16px;
-	font-weight: bold;
+	font-family: 'LUCIDA';
+	font-size: 15px;
 }
 
 /*-------------------------------------------------------------------------*/
@@ -308,7 +312,7 @@
 	border: 1px solid rgb(9,113,206);
 	
 	color: rgb(9,113,206);
-	font-family: 'Lucida Sans';
+	font-family: 'LUCIDA';
 	font-size: 12px;
   
 }
@@ -317,9 +321,11 @@
 	display: inline-block;
 	margin-left: 5px;
 	margin-top: 10px;
-
+	
+	vertical-align: top;
+	
 	color: rgb(63,72,75);
-	font-family: 'Lucida Sans';
+	font-family: 'LUCIDA';
 	font-size: 15px;
   
 }
@@ -337,7 +343,7 @@
 	
 	background-color: rgb(9,113,206);
 	color: white;
-	font-family: 'Lucida Sans';
+	font-family: 'LUCIDA';
 	font-size: 12px;
   
 }
@@ -350,7 +356,7 @@
 	vertical-align: top;
 
 	color: rgb(63,72,75);
-	font-family: 'Lucida Sans';
+	font-family: 'LUCIDA';
 	font-size: 15px;
 	
 	overflow: hidden;
@@ -370,7 +376,7 @@
 	
 	background-color: rgb(9,113,206);
 	color: white;
-	font-family: 'Lucida Sans';
+	font-family: 'LUCIDA';
 	font-size: 12px;
   
 }
@@ -380,9 +386,11 @@
 	width: 50px;
 	margin-right: 10px;
 	margin-top: 10px;
+	
+	vertical-align: top;
 
 	color: rgb(63,72,75);
-	font-family: 'Lucida Sans';
+	font-family: 'LUCIDA';
 	font-size: 15px;
   
 }
@@ -397,7 +405,7 @@
 	border: 1px solid rgb(9,113,206);
 	
 	color: rgb(9,113,206);
-	font-family: 'Lucida Sans';
+	font-family: 'LUCIDA';
 	font-size: 12px;
   
 }
@@ -410,6 +418,16 @@
 	width: 10px;
 	height: 10px; 
 	background-color: rgb(46, 204, 113);
+}
+
+.project_container .project_dispRed{
+	float:right;
+	margin-top: 15px;
+	margin-right: 10px;
+	border-radius: 50%;
+	width: 10px;
+	height: 10px; 
+	background-color: #c0392b;
 }
 
 

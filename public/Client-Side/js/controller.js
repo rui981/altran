@@ -45,40 +45,38 @@ app.controller('loginController', function($scope,$location,$routeParams,$timeou
 
     var apiurl = "http://altran.sytes.net/user/" + '"' + username + '"';
     var passwordhash = CryptoJS.MD5(password).toString();
-	passwordhash = passwordhash.substring(0,15); //esta linha tem de sair
-    var canRedirect = false;
 
     $.get(apiurl).then( function(response)
-                       {
-      var data = response[0];
-	
-      if(data.pass == passwordhash)
-      {
-        var now = new Date();
-        var exp = new Date(now.getFullYear()+1, now.getMonth(), now.getDate());
+    {
+		var data = response[0];
+		
+		if(data != undefined || data != null)
+		{
+			var now = new Date();
+			var exp = new Date(now.getFullYear()+1, now.getMonth(), now.getDate());
 
-        $cookies.put("userid", data.id, {expires: exp});
-        $cookies.put("username", username, {expires: exp});
-        $cookies.put("email", data.email, {expires: exp});
+			$cookies.put("userid", data.Id, {expires: exp});
+			$cookies.put("username", username, {expires: exp});
+			$cookies.put("email", data.Email, {expires: exp});
 
-        $scope.Global.username = username;
-        $scope.Global.email = data.email;
-        $scope.Global.fLetter = username.charAt(0);
+			$scope.Global.username = username;
+			$scope.Global.email = data.Email;
+			$scope.Global.fLetter = username.charAt(0);
 
-        $location.path("home"); 
-        $timeout(function () { $scope.currentPath = $location.path();
-                             },0);
-      }
-      else
-      {
-        alert("Password é diferente.");
-      }
+			$location.path("home"); 
+			$timeout(function () { 
+				$scope.currentPath = $location.path();
+			},0);
+		}
+		else
+		{
+			alert("Falha ao efetuar Login.");
+		}
     });
   }
 
   if($cookies.get("userid") != undefined || $cookies.get("userid") != null)
   {	
-    console.log($cookies.get("userid"));
     var uname = $cookies.get("username");
     var email = $cookies.get("email");
 
@@ -92,23 +90,21 @@ app.controller('loginController', function($scope,$location,$routeParams,$timeou
 });
 
 app.controller('homeController', function($scope,$routeParams,$cookies,Global) {
-  $scope.Global = Global;
-  $scope.Global.buttonstyle = "";
+ 
+	$scope.Global = Global;
+	$scope.Global.buttonstyle = "";
 
-  var apiurl = "http://altran.sytes.net/allProjects/" + $cookies.get("userid");
+	var apiurl = "http://altran.sytes.net/projects/" + $cookies.get("userid");
 
-  //allProjects/id -> da-me todos os projetos dum gajo
-  //unProjects/id -> os que ainda 
-  //auProjects/id -> todos os projectos nao respondidos por um gajo.
-  
-  $.get(apiurl).then( function(response)
-  {
-	console.log(response);
-    $scope.$apply(function () {
-      $scope.projectos = response;
-    });	
+	$.get(apiurl).then( function(response)
+	{
+		console.log(response);
+		
+		$scope.$apply(function () {
+			$scope.projectos = response;
+		});	
 
-  });
+	});
 });
 
 app.controller('formController', function($scope,$routeParams,$cookies,Global) {
