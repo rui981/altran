@@ -7,7 +7,8 @@ app.config( function($routeProvider) {
   $routeProvider
   .when("/", {templateUrl:'partials/login.html', controller:'loginController'})
   .when("/home", {templateUrl:'partials/home.html', controller:'homeController'})
-  .when("/form", {templateUrl:'partials/form.html', controller:'formController'})
+  .when("/form/:ID", {templateUrl:'partials/form.html', controller:'formController'})
+  .when("/test", {templateUrl:'partials/test.html', controller:'testController'})
   .when("/parameters/:Id", {templateUrl: 'partials/parameters.html', controller: 'parametersController'})
   .when("/parameters/:Id1/:Id2", {templateUrl: 'partials/parameters.html', controller: 'parametersController2'});
 });
@@ -35,7 +36,7 @@ app.controller('rootController', function($scope,Global) {
 
 });
 
-app.controller('loginController', function($scope,$location,$routeParams,$timeout,$cookies,Global) {
+app.controller('loginController', function($scope,$rootScope,$location,$routeParams,$timeout,$cookies,Global) {
   $scope.Global = Global;
   $scope.Global.buttonstyle = "width: 0px; height: 0px; margin-top: -9999px;";
 
@@ -45,7 +46,7 @@ app.controller('loginController', function($scope,$location,$routeParams,$timeou
 
     var apiurl = "http://altran.sytes.net/user/" + '"' + username + '"';
     var passwordhash = CryptoJS.MD5(password).toString();
-
+	
     $.get(apiurl).then( function(response)
     {
 		var data = response[0];
@@ -61,9 +62,10 @@ app.controller('loginController', function($scope,$location,$routeParams,$timeou
 
 			$scope.Global.username = username;
 			$scope.Global.email = data.Email;
-			$scope.Global.fLetter = username.charAt(0);
+			$scope.Global.imgLink = data.Image_Link;
 
 			$location.path("home"); 
+
 			$timeout(function () { 
 				$scope.currentPath = $location.path();
 			},0);
@@ -89,13 +91,14 @@ app.controller('loginController', function($scope,$location,$routeParams,$timeou
 
 });
 
-app.controller('homeController', function($scope,$routeParams,$cookies,Global) {
- 
+app.controller('homeController', function($scope,$routeParams,$cookies,$location,Global) {
 	$scope.Global = Global;
 	$scope.Global.buttonstyle = "";
+	
+	$('.drawer').drawer('close');
 
 	var apiurl = "http://altran.sytes.net/projects/" + $cookies.get("userid");
-
+	
 	$.get(apiurl).then( function(response)
 	{
 		console.log(response);
@@ -105,36 +108,64 @@ app.controller('homeController', function($scope,$routeParams,$cookies,Global) {
 		});	
 
 	});
+	
+	$scope.openProject = function(id){
+		var goTo = "form/" + id + "/";
+		$location.path(goTo); 
+	}
+	
+	
 });
 
 app.controller('formController', function($scope,$routeParams,$cookies,Global) {
-  $scope.Global = Global;
-  $scope.Global.buttonstyle = "";
-  
-  $scope.formData = {};
-  $scope.formData.question_1 = 0;
-  $scope.formData.question_2 = 0;
-  $scope.formData.question_3 = 0;
-  $scope.formData.question_4 = 0;
-  $scope.formData.question_5 = 0;
-  $scope.formData.question_6 = 0;
-  $scope.formData.question_7 = 0;
-  $scope.formData.question_8 = 0;
-  $scope.formData.question_9 = 0;
-  $scope.formData.question_10 = 0;
-  $scope.formData.question_11 = 0;
-  $scope.formData.question_12 = 0;
-  $scope.question_1_content = 'first';
-  $scope.question_2_content = 'first';
-  $scope.question_3_content = 'first';
-  $scope.question_4_content = 'first';
-  $scope.question_5_content = 'first';
-  $scope.question_6_content = 'first';
-  $scope.question_7_content = 'first';
-  $scope.question_8_content = 'first';
-  $scope.question_9_content = 'first';
-  $scope.question_10_content = 'first';
-  $scope.question_11_content = 'first';
+	$scope.Global = Global;
+	$scope.Global.buttonstyle = "";
+
+	$('.drawer').drawer('close');
+
+	var apiurl = "http://altran.sytes.net/questions/" + $routeParams.ID;
+	var data;
+	
+	$.get(apiurl).then( function(response)
+	{
+		data = response;
+		console.log(data);
+		
+		$scope.formData = {};
+
+		var json=[];
+		for(var i=0;i<data.length;i++)
+		{
+		  console.log(i);
+		  var temp={};
+		  temp["assessement_id"]=0;
+		  temp["question_id"]=i;
+		  temp["value"]=0;
+		  temp["description"]=data[i].Description;
+		  temp["comments"]="";
+		  json.push(temp);
+		}
+		
+		$scope.$apply(function () {
+			$scope.questions = json;
+		});	
+		
+
+		//console.log(json);
+
+	});
+
+	
+
+	$scope.submitForm = function() {
+		console.log("posting data....");
+		var formData = $scope.questions;
+		console.log(formData);
+	};
+});
+
+app.controller('testController', function($scope,$routeParams,$window) {
+	 $('.drawer').drawer('close');
 });
 
 app.controller('parametersController', function($scope,$routeParams,$window) {

@@ -5,13 +5,15 @@
 		<title>Altran</title>
 		
 		<meta name="viewport" content="width=device-width, height=device-height">
+		<meta name="theme-color" content="#2980b9">
 		
 		
 		<!-- DrawerCSS, DefaultCSS , MobileCSS -->
 		<link rel="stylesheet" href="css/drawer.min.css">
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" media="(max-width:414px)" href="css/mobile.css">
-      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+		
 		<!-- jquery , iScroll , dropdow, AngularJS, MD5 -->
 		<script src="js/jquery-1.11.2.js"></script>
 		<script src="js/iscroll.js"></script>
@@ -48,16 +50,16 @@
 				<nav class="drawer-nav" role="navigation">
 				  
 				  <div class="client_info">
-					<div class="client_logo" style="background: rgb(192, 57, 43);">{{Global.fLetter}}</div>
+					<div class="client_logo" style="background-image: url('{{Global.imgLink}}');"></div>
 					<div class="client_repname">{{Global.username}}</div>
 					<div class="client_email">{{Global.email}}</div>
 				  </div>
 				  
 				  <ul class="drawer-menu">
-					<li class="drawer-menu-item"><a href="./"><i class="icon-home"></i> Home</a></li>
-					<li class="drawer-menu-item"><a href="./base"> Novos Inquéritos</a></li>
-					<li class="drawer-menu-item"><a href="./base"> Histórico</a></li>
-					<li class="drawer-menu-item" ng-click="logout()"> Logout</li>
+					<li class="drawer-menu-item"><a href="#/"><i class="icon-home"></i> Projetos Pendentes</a></li>
+					<li class="drawer-menu-item"><a href="#/form"><i class="icon-home"></i> Histórico Projetos</a></li>
+					<li class="drawer-menu-item"><a href="#/test"><i class="icon-home"></i> Test</a></li>
+					<li class="drawer-menu-item" ng-click="logout()"><i class="icon-home"></i> Logout</li>
 				  </ul>
 				  
 				  <div class="drawer-footer">
@@ -73,7 +75,7 @@
 		</header>
 		
 		<ng-view>
-		
+
 		</ng-view>
 	</body>
 	

@@ -1,6 +1,6 @@
 <div class='container'>
   <div class="form_partial">
-    <form>
+    <form name="satisfaction_form" ng-submit="submitForm()">
       <div class="form_title">
         <span>Client Satisfaction Assessment</span>
         <span>ADM1</span>
@@ -42,345 +42,35 @@
             <span class="assessment_date">Function:</span>
           </div>
         </div>
-      </div>
-      <div class="form_question">
-        <span><label>Are you Satisfied with our Service?</label></span>
-        <div class="rating">
-          <input type="radio" ng-model="formData.question_1" name="question_1" value="0" ng-change="checkStuff(formData.question_1,this)"/><span class="hide"></span>
-          <input type="radio" ng-model="formData.question_1" name="question_1" value="1" ng-change="checkStuff(formData.question_1,this)"/><span></span>
-          <input type="radio" ng-model="formData.question_1" name="question_1" value="2" ng-change="checkStuff(formData.question_1,this)"/><span></span>
-          <input type="radio" ng-model="formData.question_1" name="question_1" value="3" ng-change="checkStuff(formData.question_1,this)"/><span></span>
-          <input type="radio" ng-model="formData.question_1" name="question_1" value="4" ng-change="checkStuff(formData.question_1,this)"/><span></span>
-          <input type="radio" ng-model="formData.question_1" name="question_1" value="5" ng-change="checkStuff(formData.question_1,this)"/><span></span>
+      </div> 
+      <div ng-repeat="question in questions"">
+        <div class="form_question">
+          <span>
+            <label>{{question.description}}</label>
+          </span>
+          <div class="rating">
+            <input type="radio" ng-model="question.value" name="{{question.id}}" value="0" />
+            <span class="hide"></span>
+            <input type="radio" ng-model="question.value" name="{{question.id}}" value="1" />
+            <span></span>
+            <input type="radio" ng-model="question.value" name="{{question.id}}" value="2" />
+            <span></span>
+            <input type="radio" ng-model="question.value" name="{{question.id}}" value="3" />
+            <span></span>
+            <input type="radio" ng-model="question.value" name="{{question.id}}" value="4" />
+            <span></span>
+            <input type="radio" ng-model="question.value" name="{{question.id}}" value="5" />
+            <span></span>
+          </div>
+          <div ng-show="question.value <= 2 && question.value !== 0" class="unsatisfaction">
+            <label>What are proposed improvement actions</label>
+            <span>
+              <textarea rows="6" cols="50" ng-model="question.comments"></textarea>
+            </span>
+          </div>
         </div>
-        <div ng-show="formData.question_1 <= 2 && formData.question_1 !== 0" class="ng-show unsatisfaction">
-          <label>What are proposed improvement actions</label>
-          <span>
-            <label>Cause of dissatisfaction:</label>
-            <i ng-click="question_1_content = 'first'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" ng-show="question_1_content == 'first'" class="ng-show"></textarea>
-          </span>
-          <span>
-            <label>Impact and risk identified:</label>
-            <i ng-click="question_1_content = 'second'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" cols="50" ng-show="question_1_content == 'second'" class="ng-show"></textarea>
-          </span>
-          <span>
-            <label>Proposed action:</label>
-            <i ng-click="question_1_content = 'third'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" cols="50" ng-show="question_1_content == 'third'" class="ng-show"></textarea>
-          </span>
-        </div> 
       </div>
-      <label>How do you estimate the following criteria?</label>
-      <div class="form_question">
-        <span><label>1. Capacity to understand our need</label></span>
-        <div class="rating">
-          <input type="radio" ng-model="formData.question_2" name="question_2" value="0" ng-change="checkStuff(formData.question_2)"/><span class="hide"></span>
-          <input type="radio" ng-model="formData.question_2" name="question_2" value="1" ng-change="checkStuff(formData.question_2)"/><span></span>
-          <input type="radio" ng-model="formData.question_2" name="question_2" value="2" ng-change="checkStuff(formData.question_2)"/><span></span>
-          <input type="radio" ng-model="formData.question_2" name="question_2" value="3" ng-change="checkStuff(formData.question_2)"/><span></span>
-          <input type="radio" ng-model="formData.question_2" name="question_2" value="4" ng-change="checkStuff(formData.question_2)"/><span></span>
-          <input type="radio" ng-model="formData.question_2" name="question_2" value="5" ng-change="checkStuff(formData.question_2)"/><span></span>
-        </div>
-        <div ng-show="formData.question_2 <= 2 && formData.question_2 !== 0" class="ng-show unsatisfaction">
-          <label>What are proposed improvement actions</label>
-          <span>
-            <label>Cause of dissatisfaction:</label>
-            <i ng-click="question_2_content = 'first'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" ng-show="question_2_content == 'first'" class="ng-show"></textarea>
-          </span>
-          <span>
-            <label>Impact and risk identified:</label>
-            <i ng-click="question_2_content = 'second'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" cols="50" ng-show="question_2_content == 'second'" class="ng-show"></textarea>
-          </span>
-          <span>
-            <label>Proposed action:</label>
-            <i ng-click="question_2_content = 'third'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" cols="50" ng-show="question_2_content == 'third'" class="ng-show"></textarea>
-          </span>
-        </div> 
-      </div>
-      <div class="form_question">
-        <span><label>2. Quality of the proposal and relevance of the solution</label></span>
-        <div class="rating">
-          <input type="radio" ng-model="formData.question_3" name="question_3" value="0" ng-change="checkStuff(formData.question_3)"/><span class="hide"></span>
-          <input type="radio" ng-model="formData.question_3" name="question_3" value="1" ng-change="checkStuff(formData.question_3)"/><span></span>
-          <input type="radio" ng-model="formData.question_3" name="question_3" value="2" ng-change="checkStuff(formData.question_3)"/><span></span>
-          <input type="radio" ng-model="formData.question_3" name="question_3" value="3" ng-change="checkStuff(formData.question_3)"/><span></span>
-          <input type="radio" ng-model="formData.question_3" name="question_3" value="4" ng-change="checkStuff(formData.question_3)"/><span></span>
-          <input type="radio" ng-model="formData.question_3" name="question_3" value="5" ng-change="checkStuff(formData.question_3)"/><span></span>
-        </div>
-        <div ng-show="formData.question_3 <= 2 && formData.question_3 !== 0" class="ng-show unsatisfaction">
-          <label>What are proposed improvement actions</label>
-          <span>
-            <label>Cause of dissatisfaction:</label>
-            <i ng-click="question_3_content = 'first'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" ng-show="question_3_content == 'first'" class="ng-show"></textarea>
-          </span>
-          <span>
-            <label>Impact and risk identified:</label>
-            <i ng-click="question_3_content = 'second'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" cols="50" ng-show="question_3_content == 'second'" class="ng-show"></textarea>
-          </span>
-          <span>
-            <label>Proposed action:</label>
-            <i ng-click="question_3_content = 'third'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" cols="50" ng-show="question_3_content == 'third'" class="ng-show"></textarea>
-          </span>
-        </div> 
-      </div>
-      <div class="form_question">
-        <span><label>3. Diligence and transparency of the customer relationship</label></span>
-        <div class="rating">
-          <input type="radio" ng-model="formData.question_4" name="question_4" value="0" ng-change="checkStuff(formData.question_4)"/><span class="hide"></span>
-          <input type="radio" ng-model="formData.question_4" name="question_4" value="1" ng-change="checkStuff(formData.question_4)"/><span></span>
-          <input type="radio" ng-model="formData.question_4" name="question_4" value="2" ng-change="checkStuff(formData.question_4)"/><span></span>
-          <input type="radio" ng-model="formData.question_4" name="question_4" value="3" ng-change="checkStuff(formData.question_4)"/><span></span>
-          <input type="radio" ng-model="formData.question_4" name="question_4" value="4" ng-change="checkStuff(formData.question_4)"/><span></span>
-          <input type="radio" ng-model="formData.question_4" name="question_4" value="5" ng-change="checkStuff(formData.question_4)"/><span></span>
-        </div>
-        <div ng-show="formData.question_4 <= 2 && formData.question_4 !== 0" class="ng-show unsatisfaction">
-          <label>What are proposed improvement actions</label>
-          <span>
-            <label>Cause of dissatisfaction:</label>
-            <i ng-click="question_4_content = 'first'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" ng-show="question_4_content == 'first'" class="ng-show"></textarea>
-          </span>
-          <span>
-            <label>Impact and risk identified:</label>
-            <i ng-click="question_4_content = 'second'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" cols="50" ng-show="question_4_content == 'second'" class="ng-show"></textarea>
-          </span>
-          <span>
-            <label>Proposed action:</label>
-            <i ng-click="question_4_content = 'third'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" cols="50" ng-show="question_4_content == 'third'" class="ng-show"></textarea>
-          </span>
-        </div> 
-      </div>
-      <div class="form_question">
-        <span><label>4. Reactivity to problems</label></span>
-        <div class="rating">
-          <input type="radio" ng-model="formData.question_5" name="question_5" value="0" ng-change="checkStuff(formData.question_5)"/><span class="hide"></span>
-          <input type="radio" ng-model="formData.question_5" name="question_5" value="1" ng-change="checkStuff(formData.question_5)"/><span></span>
-          <input type="radio" ng-model="formData.question_5" name="question_5" value="2" ng-change="checkStuff(formData.question_5)"/><span></span>
-          <input type="radio" ng-model="formData.question_5" name="question_5" value="3" ng-change="checkStuff(formData.question_5)"/><span></span>
-          <input type="radio" ng-model="formData.question_5" name="question_5" value="4" ng-change="checkStuff(formData.question_5)"/><span></span>
-          <input type="radio" ng-model="formData.question_5" name="question_5" value="5" ng-change="checkStuff(formData.question_5)"/><span></span>
-        </div>
-        <div ng-show="formData.question_5 <= 2 && formData.question_5 !== 0" class="ng-show unsatisfaction">
-          <label>What are proposed improvement actions</label>
-          <span>
-            <label>Cause of dissatisfaction:</label>
-            <i ng-click="question_5_content = 'first'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" ng-show="question_5_content == 'first'" class="ng-show"></textarea>
-          </span>
-          <span>
-            <label>Impact and risk identified:</label>
-            <i ng-click="question_5_content = 'second'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" cols="50" ng-show="question_5_content == 'second'" class="ng-show"></textarea>
-          </span>
-          <span>
-            <label>Proposed action:</label>
-            <i ng-click="question_5_content = 'third'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" cols="50" ng-show="question_5_content == 'third'" class="ng-show"></textarea>
-          </span>
-        </div> 
-      </div>
-      <div class="form_question">
-        <span><label>5. Ability to anticipate and duty to advise</label></span>
-        <div class="rating">
-          <input type="radio" ng-model="formData.question_6" name="question_6" value="0" ng-change="checkStuff(formData.question_6)"/><span class="hide"></span>
-          <input type="radio" ng-model="formData.question_6" name="question_6" value="1" ng-change="checkStuff(formData.question_6)"/><span></span>
-          <input type="radio" ng-model="formData.question_6" name="question_6" value="2" ng-change="checkStuff(formData.question_6)"/><span></span>
-          <input type="radio" ng-model="formData.question_6" name="question_6" value="3" ng-change="checkStuff(formData.question_6)"/><span></span>
-          <input type="radio" ng-model="formData.question_6" name="question_6" value="4" ng-change="checkStuff(formData.question_6)"/><span></span>
-          <input type="radio" ng-model="formData.question_6" name="question_6" value="5" ng-change="checkStuff(formData.question_6)"/><span></span>
-        </div>
-        <div ng-show="formData.question_6 <= 2 && formData.question_6 !== 0" class="ng-show unsatisfaction">
-          <label>What are proposed improvement actions</label>
-          <span>
-            <label>Cause of dissatisfaction:</label>
-            <i ng-click="question_6_content = 'first'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" ng-show="question_6_content == 'first'" class="ng-show"></textarea>
-          </span>
-          <span>
-            <label>Impact and risk identified:</label>
-            <i ng-click="question_6_content = 'second'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" cols="50" ng-show="question_6_content == 'second'" class="ng-show"></textarea>
-          </span>
-          <span>
-            <label>Proposed action:</label>
-            <i ng-click="question_6_content = 'third'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" cols="50" ng-show="question_6_content == 'third'" class="ng-show"></textarea>
-          </span>
-        </div> 
-      </div>
-      <div class="form_question">
-        <span><label>6. Effectiveness of the service organization</label></span>
-        <div class="rating">
-          <input type="radio" ng-model="formData.question_7" name="question_7" value="0" ng-change="checkStuff(formData.question_7)"/><span class="hide"></span>
-          <input type="radio" ng-model="formData.question_7" name="question_7" value="1" ng-change="checkStuff(formData.question_7)"/><span></span>
-          <input type="radio" ng-model="formData.question_7" name="question_7" value="2" ng-change="checkStuff(formData.question_7)"/><span></span>
-          <input type="radio" ng-model="formData.question_7" name="question_7" value="3" ng-change="checkStuff(formData.question_7)"/><span></span>
-          <input type="radio" ng-model="formData.question_7" name="question_7" value="4" ng-change="checkStuff(formData.question_7)"/><span></span>
-          <input type="radio" ng-model="formData.question_7" name="question_7" value="5" ng-change="checkStuff(formData.question_7)"/><span></span>
-        </div>
-        <div ng-show="formData.question_7 <= 2 && formData.question_7 !== 0" class="ng-show unsatisfaction">
-          <label>What are proposed improvement actions</label>
-          <span>
-            <label>Cause of dissatisfaction:</label>
-            <i ng-click="question_7_content = 'first'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" ng-show="question_7_content == 'first'" class="ng-show"></textarea>
-          </span>
-          <span>
-            <label>Impact and risk identified:</label>
-            <i ng-click="question_7_content = 'second'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" cols="50" ng-show="question_7_content == 'second'" class="ng-show"></textarea>
-          </span>
-          <span>
-            <label>Proposed action:</label>
-            <i ng-click="question_7_content = 'third'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" cols="50" ng-show="question_7_content == 'third'" class="ng-show"></textarea>
-          </span>
-        </div> 
-      </div>
-      <div class="form_question">
-        <span><label>7. Effectiveness of the resources management</label></span>
-        <div class="rating">
-          <input type="radio" ng-model="formData.question_8" name="question_8" value="0" ng-change="checkStuff(formData.question_8)"/><span class="hide"></span>
-          <input type="radio" ng-model="formData.question_8" name="question_8" value="1" ng-change="checkStuff(formData.question_8)"/><span></span>
-          <input type="radio" ng-model="formData.question_8" name="question_8" value="2" ng-change="checkStuff(formData.question_8)"/><span></span>
-          <input type="radio" ng-model="formData.question_8" name="question_8" value="3" ng-change="checkStuff(formData.question_8)"/><span></span>
-          <input type="radio" ng-model="formData.question_8" name="question_8" value="4" ng-change="checkStuff(formData.question_8)"/><span></span>
-          <input type="radio" ng-model="formData.question_8" name="question_8" value="5" ng-change="checkStuff(formData.question_8)"/><span></span>
-        </div>
-        <div ng-show="formData.question_8 <= 2 && formData.question_8 !== 0" class="ng-show unsatisfaction">
-          <label>What are proposed improvement actions</label>
-          <span>
-            <label>Cause of dissatisfaction:</label>
-            <i ng-click="question_8_content = 'first'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" ng-show="question_8_content == 'first'" class="ng-show"></textarea>
-          </span>
-          <span>
-            <label>Impact and risk identified:</label>
-            <i ng-click="question_8_content = 'second'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" cols="50" ng-show="question_8_content == 'second'" class="ng-show"></textarea>
-          </span>
-          <span>
-            <label>Proposed action:</label>
-            <i ng-click="question_8_content = 'third'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" cols="50" ng-show="question_8_content == 'third'" class="ng-show"></textarea>
-          </span>
-        </div> 
-      </div>
-      <div class="form_question">
-        <span><label>8. Appropriate skills</label></span>
-        <div class="rating">
-          <input type="radio" ng-model="formData.question_9" name="question_9" value="0" ng-change="checkStuff(formData.question_9)"/><span class="hide"></span>
-          <input type="radio" ng-model="formData.question_9" name="question_9" value="1" ng-change="checkStuff(formData.question_9)"/><span></span>
-          <input type="radio" ng-model="formData.question_9" name="question_9" value="2" ng-change="checkStuff(formData.question_9)"/><span></span>
-          <input type="radio" ng-model="formData.question_9" name="question_9" value="3" ng-change="checkStuff(formData.question_9)"/><span></span>
-          <input type="radio" ng-model="formData.question_9" name="question_9" value="4" ng-change="checkStuff(formData.question_9)"/><span></span>
-          <input type="radio" ng-model="formData.question_9" name="question_9" value="5" ng-change="checkStuff(formData.question_9)"/><span></span>
-        </div>
-        <div ng-show="formData.question_9 <= 2 && formData.question_9 !== 0" class="ng-show unsatisfaction">
-          <label>What are proposed improvement actions</label>
-          <span>
-            <label>Cause of dissatisfaction:</label>
-            <i ng-click="question_9_content = 'first'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" ng-show="question_9_content == 'first'" class="ng-show"></textarea>
-          </span>
-          <span>
-            <label>Impact and risk identified:</label>
-            <i ng-click="question_9_content = 'second'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" cols="50" ng-show="question_9_content == 'second'" class="ng-show"></textarea>
-          </span>
-          <span>
-            <label>Proposed action:</label>
-            <i ng-click="question_9_content = 'third'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" cols="50" ng-show="question_9_content == 'third'" class="ng-show"></textarea>
-          </span>
-        </div> 
-      </div>
-      <div class="form_question">
-        <span><label>9. Service continuity</label></span>
-        <div class="rating">
-          <input type="radio" ng-model="formData.question_10" name="question_10" value="0" ng-change="checkStuff(formData.question_10)"/><span class="hide"></span>
-          <input type="radio" ng-model="formData.question_10" name="question_10" value="1" ng-change="checkStuff(formData.question_10)"/><span></span>
-          <input type="radio" ng-model="formData.question_10" name="question_10" value="2" ng-change="checkStuff(formData.question_10)"/><span></span>
-          <input type="radio" ng-model="formData.question_10" name="question_10" value="3" ng-change="checkStuff(formData.question_10)"/><span></span>
-          <input type="radio" ng-model="formData.question_10" name="question_10" value="4" ng-change="checkStuff(formData.question_10)"/><span></span>
-          <input type="radio" ng-model="formData.question_10" name="question_10" value="5" ng-change="checkStuff(formData.question_10)"/><span></span>
-        </div>
-        <div ng-show="formData.question_10 <= 2 && formData.question_10 !== 0" class="ng-show unsatisfaction">
-          <label>What are proposed improvement actions</label>
-          <span>
-            <label>Cause of dissatisfaction:</label>
-            <i ng-click="question_10_content = 'first'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" ng-show="question_10_content == 'first'" class="ng-show"></textarea>
-          </span>
-          <span>
-            <label>Impact and risk identified:</label>
-            <i ng-click="question_10_content = 'second'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" cols="50" ng-show="question_10_content == 'second'" class="ng-show"></textarea>
-          </span>
-          <span>
-            <label>Proposed action:</label>
-            <i ng-click="question_10_content = 'third'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" cols="50" ng-show="question_10_content == 'third'" class="ng-show"></textarea>
-          </span>
-        </div> 
-      </div>
-      <div class="form_question">
-        <span><label>10. Autonomy of resources</label></span>
-        <div class="rating">
-          <input type="radio" ng-model="formData.question_11" name="question_11" value="0" ng-change="checkStuff(formData.question_11)"/><span class="hide"></span>
-          <input type="radio" ng-model="formData.question_11" name="question_11" value="1" ng-change="checkStuff(formData.question_11)"/><span></span>  
-          <input type="radio" ng-model="formData.question_11" name="question_11" value="2" ng-change="checkStuff(formData.question_11)"/><span></span>
-          <input type="radio" ng-model="formData.question_11" name="question_11" value="3" ng-change="checkStuff(formData.question_11)"/><span></span>
-          <input type="radio" ng-model="formData.question_11" name="question_11" value="4" ng-change="checkStuff(formData.question_11)"/><span></span>
-          <input type="radio" ng-model="formData.question_11" name="question_11" value="5" ng-change="checkStuff(formData.question_11)"/><span></span>
-        </div>
-        <div ng-show="formData.question_11 <= 2 && formData.question_11 !== 0" class="ng-show unsatisfaction">
-          <label>What are proposed improvement actions</label>
-          <span>
-            <label>Cause of dissatisfaction:</label>
-            <i ng-click="question_11_content = 'first'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" ng-show="question_11_content == 'first'" class="ng-show"></textarea>
-          </span>
-          <span>
-            <label>Impact and risk identified:</label>
-            <i ng-click="question_11_content = 'second'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" cols="50" ng-show="question_11_content == 'second'" class="ng-show"></textarea>
-          </span>
-          <span>
-            <label>Proposed action:</label>
-            <i ng-click="question_11_content = 'third'" class="fa fa-plus"> click to answer</i>
-            <textarea rows="6" cols="50" ng-show="question_11_content == 'third'" class="ng-show"></textarea>
-          </span>
-        </div> 
-      </div>
-      <div class="form_last_question">
-        <span>How likely are you to order a new service to Altran or recommend Altran to a colleague?</label></span>
-      <div class="rating">
-        <input type="radio" ng-model="formData.question_12" name="question_12" value="0" ng-change="checkStuff(formData.question_12)"/><span class="hide"></span>
-        <input type="radio" ng-model="formData.question_12" name="question_12" value="1" ng-change="checkStuff(formData.question_12)"/><span></span>
-        <input type="radio" ng-model="formData.question_12" name="question_12" value="2" ng-change="checkStuff(formData.question_12)"/><span></span>
-        <input type="radio" ng-model="formData.question_12" name="question_12" value="3" ng-change="checkStuff(formData.question_12)"/><span></span>
-        <input type="radio" ng-model="formData.question_12" name="question_12" value="4" ng-change="checkStuff(formData.question_12)"/><span></span>
-        <input type="radio" ng-model="formData.question_12" name="question_12" value="5" ng-change="checkStuff(formData.question_12)"/><span></span>
-        <input type="radio" ng-model="formData.question_12" name="question_12" value="6" ng-change="checkStuff(formData.question_12)"/><span></span>
-        <input type="radio" ng-model="formData.question_12" name="question_12" value="7" ng-change="checkStuff(formData.question_12)"/><span></span>
-        <input type="radio" ng-model="formData.question_12" name="question_12" value="8" ng-change="checkStuff(formData.question_12)"/><span></span>
-        <input type="radio" ng-model="formData.question_12" name="question_12" value="9" ng-change="checkStuff(formData.question_12)"/><span></span>
-        <input type="radio" ng-model="formData.question_12" name="question_12" value="10" ng-change="checkStuff(formData.question_12)"/><span></span>
-      </div>
-
-      </div>
-    <input type="submit" value="Submit" class="submit_button">
+      <input type="submit" value="Submit" class="submit_button" ng-click="submit">
     </form>
-</div>
+  </div>
 </div>

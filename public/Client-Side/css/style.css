@@ -4,7 +4,7 @@ body{
   padding:0;
   height:100%;
   background-color: white;
-  overflow: hidden;
+  overflow: auto !important;
 }
 
 .drawer-default{
@@ -26,10 +26,6 @@ body{
 
 /*----------------------------------------------------------------------*/
 
-.wrapper {
-  min-height:100%;
-  position:relative;
-}
 
 header {
   height: 50px;
@@ -38,12 +34,15 @@ header {
   -webkit-box-shadow: 0px 0px 15px -6px black;
   -moz-box-shadow: 0px 0px 15px -6px black;
   box-shadow: 0px 0px 15px -6px black;
-  position: absolute;
+  position: fixed;
+  
+  /*top:0;*/
+  
+ /* margin-top: -19px; Não percebo o que se passa com o NGSCOPE, ele fica com tamanho sem motivo */
 }
 
 .container{
   padding-bottom:100px; /* Height of the footer element */
-  overflow:auto;
   margin-top: 60px;
 }
 
@@ -138,6 +137,76 @@ input:focus{
 
 /* WIDTH SIDE BAR IS 280PX */
 
+/*HEXAGON-------------------------------------------------------------------*/
+
+..hexagon {
+  position: relative;
+  width: 300px; 
+  height: 173.21px;
+  margin: 86.60px 0;
+  background-image: url(http://csshexagon.com/img/meow.jpg);
+  background-size: auto 346.4102px;
+  background-position: center;
+}
+
+.hexTop,
+.hexBottom {
+  position: absolute;
+  z-index: 1;
+  width: 212.13px;
+  height: 212.13px;
+  overflow: hidden;
+  -webkit-transform: scaleY(0.5774) rotate(-45deg);
+  -ms-transform: scaleY(0.5774) rotate(-45deg);
+  transform: scaleY(0.5774) rotate(-45deg);
+  background: inherit;
+  left: 43.93px;
+}
+
+/*counter transform the bg image on the caps*/
+.hexTop:after,
+.hexBottom:after {
+  content: "";
+  position: absolute;
+  width: 300.0000px;
+  height: 173.20508075688775px;
+  -webkit-transform:  rotate(45deg) scaleY(1.7321) translateY(-86.6025px);
+  -ms-transform:      rotate(45deg) scaleY(1.7321) translateY(-86.6025px);
+  transform:          rotate(45deg) scaleY(1.7321) translateY(-86.6025px);
+  -webkit-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+  background: inherit;
+}
+
+.hexTop {
+  top: -106.0660px;
+}
+
+.hexTop:after {
+  background-position: center top;
+}
+
+.hexBottom {
+  bottom: -106.0660px;
+}
+
+.hexBottom:after {
+  background-position: center bottom;
+}
+
+.hexagon:after {
+  content: "";
+  position: absolute;
+  top: 0.0000px;
+  left: 0;
+  width: 300.0000px;
+  height: 173.2051px;
+  z-index: 2;
+  background: inherit;
+}
+
+/*------------------------------------------------------------------------------*/
 .client_info{
   margin-top: 10px;
   width: 100%;
@@ -156,14 +225,14 @@ input:focus{
 
   margin: 0 auto;
 
-  font-family: Arial,Helvetica,sans-serif;
-  font-size: 45px;
-  font-weight: bold;
-  color: white;
-
   line-height:80px;
   text-align:center;
-  background: rgba(26,161,225,1);
+  
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  
+  
 }
 
 .client_info .client_repname{
