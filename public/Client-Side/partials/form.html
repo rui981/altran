@@ -1,32 +1,19 @@
 <div class='container'>
   <div class="form_partial">
-    <form name="satisfaction_form" ng-submit="submitForm()">
+    <form name="satisfaction_form" ng-submit="submitForm(project.Id)">
       <div class="form_title">
         <span>Client Satisfaction Assessment</span>
-        <span>ADM1</span>
+        <span>ADM{{project.ADM_Type}}</span>
       </div>
       <div class="form_header">
         <div class="form_header_section">
           <span>Project</span>
           <div class="project_info_1-1">
-            <span class="title">Title:</span>
+            <span class="title">Title: {{project.Description}}</span>
           </div>
           <div class="project_info_1-2">
-            <span class="id">Id:</span>
-            <span class="assessment_date">Assessment Date:</span>
-          </div>
-        </div>
-        <div class="form_header_section">
-          <span>Client:</span>
-          <div class="project_info_1-2">
-            <span class="id">Account:</span>
-            <span class="assessment_date">Name:</span>
-            <span class="assessment_date">E-mail:</span>
-          </div>
-          <div class="project_info_1-2">
-            <span class="id">Firm:</span>
-            <span class="assessment_date">Function:</span>
-            <span class="assessment_date">Tel:</span>
+            <span class="id">Id: {{project.Id}}</span>
+            <span class="assessment_date">Assessment Date: {{project.Submission_Date}}</span>
           </div>
         </div>
         <div class="form_header_section">
@@ -49,18 +36,19 @@
             <label>{{question.description}}</label>
           </span>
           <div class="rating">
-            <input type="radio" ng-model="question.value" name="{{question.id}}" value="0" />
+            <input type="radio" ng-model="question.value" name="{{question.id}}" value="0" required/>
             <span class="hide"></span>
-            <input type="radio" ng-model="question.value" name="{{question.id}}" value="1" />
+            <input type="radio" ng-model="question.value" name="{{question.id}}" value="1" required/>
             <span></span>
-            <input type="radio" ng-model="question.value" name="{{question.id}}" value="2" />
+            <input type="radio" ng-model="question.value" name="{{question.id}}" value="2" required/>
             <span></span>
-            <input type="radio" ng-model="question.value" name="{{question.id}}" value="3" />
+            <input type="radio" ng-model="question.value" name="{{question.id}}" value="3" required/>
             <span></span>
-            <input type="radio" ng-model="question.value" name="{{question.id}}" value="4" />
+            <input type="radio" ng-model="question.value" name="{{question.id}}" value="4" required/>
             <span></span>
-            <input type="radio" ng-model="question.value" name="{{question.id}}" value="5" />
+            <input type="radio" ng-model="question.value" name="{{question.id}}" value="5" required/>
             <span></span>
+            
           </div>
           <div ng-show="question.value <= 2 && question.value !== 0" class="unsatisfaction">
             <label>What are proposed improvement actions</label>
@@ -70,7 +58,7 @@
           </div>
         </div>
       </div>
-      <input type="submit" value="Submit" class="submit_button" ng-click="submit">
+      <input type="submit" value="Submit" class="submit_button">
     </form>
   </div>
 </div>
