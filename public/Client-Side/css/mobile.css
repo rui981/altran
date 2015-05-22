@@ -75,30 +75,25 @@
 		/* WIDTH SIDE BAR IS 280PX */
 		
 .client_info{
-	margin-top: 10px;
-	width: 100%;
 	
-	border-bottom: 1px solid rgba(40,40,40,1.0);
-	padding-bottom: 10px;
 }
 
 .client_info .client_logo{
-	width:80px;
-    height:80px;
+	width:100px;
+    height:100px;
 	
-    border-radius:80px;
+    border-radius:100px;
 	border-style: solid;
     border-color: rgba(255,255,255,0.8);
 	
 	margin: 0 auto;
 	
-    line-height:80px;
+    line-height:100px;
     text-align:center;
-	background: rgba(26,161,225,1);
-	
+
+	background-image: url(http://www.xcelchassiswest.com/images/function_images/profile_pictures/no_user_pic.png);
 	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center center;
+	background-position: 50%;
   
 }
 
@@ -134,14 +129,13 @@
 }
 
 .drawer-menu .drawer-menu-item{
-	border-bottom: 1px solid rgba(40,40,40,1.0);	
 	padding: 15px 15px 15px;
 }
 
 .drawer-menu .drawer-menu-item a{
 	font-family: Arial,Helvetica,sans-serif;
 	font-size: 16px;
-    color: rgba(200,200,200,1.0) !important;
+    color: white !important;
 	height: 20px;
 	line-height: 20px;
 	display: block;
@@ -156,6 +150,32 @@
 	width: 17px;
 	height: 17px;
 	background-image: url("../img/icons/home.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+	
+	margin-right: 5px;
+	vertical-align: -2px;
+}
+
+.icon-folder{
+	display:inline-block;
+	width: 17px;
+	height: 17px;
+	background-image: url("../img/icons/folder.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+	
+	margin-right: 5px;
+	vertical-align: -2px;
+}
+
+.icon-power{
+	display:inline-block;
+	width: 17px;
+	height: 17px;
+	background-image: url("../img/icons/power.png");
 	background-repeat: no-repeat;
 	background-size: contain;
 	background-position: center center;

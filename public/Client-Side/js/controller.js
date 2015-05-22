@@ -6,7 +6,8 @@ var app = angular.module("AltranWebApp", ["ngRoute", "ngCookies"])
 app.config(function ($routeProvider) {
 	$routeProvider
 		.when("/", { templateUrl: 'partials/login.html', controller: 'loginController' })
-		.when("/home", { templateUrl: 'partials/home.html', controller: 'homeController' })
+		.when("/allProjects", { templateUrl: 'partials/allProjects.html', controller: 'allProjectsController' })
+		.when("/inTimeProjects", { templateUrl: 'partials/inTimeProjects.html', controller: 'inTimeProjectsController' })
 		.when("/form/:ID", { templateUrl: 'partials/form.html', controller: 'formController' })
 		.when("/test", { templateUrl: 'partials/test.html', controller: 'testController' })
 		.when("/parameters/:Id", { templateUrl: 'partials/parameters.html', controller: 'parametersController' })
@@ -59,9 +60,13 @@ app.controller('loginController', function ($scope, $rootScope, $location, $rout
 
 				$scope.Global.username = username;
 				$scope.Global.email = data.Email;
-				$scope.Global.imgLink = data.Image_Link;
-
-				$location.path("home");
+				
+				if($scope.Global.imgLink != "")
+					$scope.Global.imgLink = "background-image: url('"+ data.Image_Link +"');";
+				else
+					$scope.Global.imgLink = "";
+					
+				$location.path("allProjects");
 
 				$timeout(function () {
 					$scope.currentPath = $location.path();
@@ -81,12 +86,12 @@ app.controller('loginController', function ($scope, $rootScope, $location, $rout
 		$scope.Global.email = email;
 		$scope.Global.fLetter = uname.charAt(0);
 
-		$location.path("home");
+		$location.path("allProjects");
 	}
 
 });
 
-app.controller('homeController', function ($scope, $routeParams, $cookies, $location, Global) {
+app.controller('allProjectsController', function ($scope, $routeParams, $cookies, $location, Global) {
 	$scope.Global = Global;
 	$scope.Global.buttonstyle = "";
 
@@ -94,6 +99,31 @@ app.controller('homeController', function ($scope, $routeParams, $cookies, $loca
 
 	var apiurl = "http://altran.sytes.net/projects/" + $cookies.get("userid");
 
+	$.get(apiurl).then(function (response) {
+		console.log(response);
+
+		$scope.$apply(function () {
+			$scope.projectos = response;
+		});
+
+	});
+
+	$scope.openProject = function (id) {
+		var goTo = "form/" + id + "/";
+		$location.path(goTo);
+	}
+});
+
+app.controller('inTimeProjectsController', function ($scope, $routeParams, $cookies, $location, Global) {
+	$scope.Global = Global;
+	$scope.Global.buttonstyle = "";
+
+	$('.drawer').drawer('close');
+
+	var apiurl = "http://altran.sytes.net/unProjects/" + $cookies.get("userid"); //TODO
+	
+	console.log(apiurl);
+	
 	$.get(apiurl).then(function (response) {
 		console.log(response);
 

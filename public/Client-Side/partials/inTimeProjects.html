@@ -1,0 +1,26 @@
+<div class='container'>
+	<div ng-repeat="p in projectos">
+		<div class="project_container" ng-click="openProject(p.Id)">
+			<div>
+				<div class="project_title">PROJETO</div>
+				<div class="project_name">{{p.Description}}</div>
+				
+				<div ng-if="p.Flag == 0" class="project_dispGreen"></div>
+				<div ng-if="p.Flag == 1" class="project_dispRed"></div>
+				<div class="project_disp">DISP</div>
+			</div>
+			
+			<div>
+				<div class="project_assdate">DATA</div>
+				<div class="project_date">{{p.date}}</div>
+				
+				<div class="project_typeadm">TIPO</div>
+				<div ng-if="p.ADM_Type == 1" class="project_adm">ADM1</div>
+				<div ng-if="p.ADM_Type == 2" class="project_adm">ADM2</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class='footer'>
+</div>
