@@ -127,7 +127,12 @@ app.controller('allProjectsController', function ($scope, $routeParams, $cookies
 
 	$.get(apiurl).then(function (response) {
 		console.log(response);
-
+		
+		for(var i=0; i < $scope.projectos.length; i++)
+		{
+			$scope.projectos[i].day = $scope.projectos[i].date.substring(0, 2); 
+		}
+		
 		$scope.$apply(function () {
 			$scope.projectos = response;
 		});
