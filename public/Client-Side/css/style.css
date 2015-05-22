@@ -43,8 +43,9 @@ header {
 }
 
 .container{
-  padding-bottom:100px; /* Height of the footer element */
-  margin-top: 60px;
+  /* padding-bottom:100px;  Height of the footer element */
+  padding-top: 60px;
+  
 }
 
 .footer {
@@ -99,6 +100,21 @@ input:focus{
   background-attachment: fixed;
 }
 
+.projects_partial
+{
+  min-height:100%;
+  width: 100%;
+  
+  background: -webkit-linear-gradient(rgb(37,183,230), rgb(49,125,188)); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(rgb(37,183,230), rgb(49,125,188)); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(rgb(37,183,230), rgb(49,125,188)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(rgb(37,183,230), rgb(49,125,188)); /* Standard syntax */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position:center center;
+  background-attachment: fixed;
+}
+
 
 /*-------------------------------------------------------------------------*/
 /*DRAWER ICON STUFF--------------------------------------------------------*/
@@ -133,6 +149,10 @@ input:focus{
   background-color: #16addb;
 }
 
+.drawer-overlay-upper{
+  background-color: rgba(255, 255, 255, 0.5) !important;
+}
+
 /*-------------------------------------------------------------------------*/
 /*SIDE BAR STUFF-----------------------------------------------------------*/
 
@@ -140,7 +160,7 @@ input:focus{
 
 /*HEXAGON-------------------------------------------------------------------*/
 
-..hexagon {
+.hexagon {
   position: relative;
   width: 300px; 
   height: 173.21px;
@@ -233,7 +253,8 @@ input:focus{
   
   background-image: url(http://www.xcelchassiswest.com/images/function_images/profile_pictures/no_user_pic.png);
   background-repeat: no-repeat;
-	background-position: 50%;
+  background-size: contain;
+  background-position: center center;
   /*background-size: 110% 110%;*/
   
   
@@ -260,7 +281,8 @@ input:focus{
 
   font-family: Arial,Helvetica,sans-serif;
   font-size: 16px;
-  color: rgba(26,161,225,1);
+  /*color: rgba(26,161,225,1);*/
+  color: white;
 
   line-height:20px;
   text-align:center;
@@ -667,7 +689,6 @@ div.project_info_1-2 > span{
 	margin-left: 10px;
 	margin-right: 10px;
 	
-	border-radius: 5px;
-	border: 1px solid rgb(125,143,148);
+	/*border-radius: 5px;*/
 }
 
