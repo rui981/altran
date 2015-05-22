@@ -178,6 +178,10 @@ app.controller('formController', function ($scope, $http, $routeParams, $cookies
 			if ($scope.questions[i].value == 0) {
 				return false;
 			}
+			if($scope.questions[i].value > 2 && $scope.questions[i].comments != '') {
+				alert($scope.questions[i].value);
+				return false;
+			}
 		}
 		return true;
 	}
@@ -185,13 +189,13 @@ app.controller('formController', function ($scope, $http, $routeParams, $cookies
 	$scope.submitForm = function (id) {
 		if (allQuestionsAnswered()) {
 			delete $scope.validationFailed;
-			
 			// code to go to the next step here
 		} else {
 			
 			$scope.validationFailed = true;
 			return false;
 		}
+		
 		
 		console.log("posting data....");
 		var formData = $scope.questions;
