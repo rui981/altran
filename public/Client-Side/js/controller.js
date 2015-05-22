@@ -45,37 +45,62 @@ app.controller('loginController', function ($scope, $rootScope, $location, $rout
 		var username = document.getElementById("login_username").value;
 		var password = document.getElementById("login_password").value;
 
-		var apiurl = "http://altran.sytes.net/user/" + '"' + username + '"';
+		var apiurl = "http://altran.sytes.net/login";
 		var passwordhash = CryptoJS.MD5(password).toString();
+	
+		$.ajax({
+		  url:apiurl,
+		  type:"POST",
+		  data: JSON.stringify({name : username, pass : passwordhash}),
+		  contentType:"application/json; charset=utf-8",
+		  success: function(code, textStatus){
+			if(code == 200)
+			{
+				var apiurl2 = 'http://altran.sytes.net/user/"' + username + '"' ;
 
-		$.get(apiurl).then(function (response) {
-			var data = response[0];
-
-			if (data != undefined || data != null) {
-				var now = new Date();
-				var exp = new Date(now.getFullYear() + 1, now.getMonth(), now.getDate());
-
-				$cookies.put("userid", data.Id, { expires: exp });
-				$cookies.put("username", username, { expires: exp });
-				$cookies.put("email", data.Email, { expires: exp });
-
-				$scope.Global.username = username;
-				$scope.Global.email = data.Email;
-				
-				if($scope.Global.imgLink != "")
-					$scope.Global.imgLink = "background-image: url('"+ data.Image_Link +"');";
-				else
-					$scope.Global.imgLink = "";
+				$.get(apiurl2).then(function (response) {
+					var data = response[0];
 					
-				$location.path("allProjects");
-
-				$timeout(function () {
-					$scope.currentPath = $location.path();
-				}, 0);
+					if (data != undefined || data != null) {
+						
+						var now = new Date();
+						var exp = new Date(now.getFullYear() + 1, now.getMonth(), now.getDate());
+		
+						$cookies.put("userid", data.Id, { expires: exp });
+						$cookies.put("username", username, { expires: exp });
+						$cookies.put("email", data.Email, { expires: exp });
+		
+						$scope.Global.username = username;
+						$scope.Global.email = data.Email;
+						
+						if($scope.Global.imgLink != "")
+							$scope.Global.imgLink = "background-image: url('"+ data.Image_Link +"');";
+						else
+							$scope.Global.imgLink = "";
+							
+						$location.path("allProjects");
+		
+						$timeout(function () {
+							$scope.currentPath = $location.path();
+						}, 0);
+					}
+					else {
+						alert("Falha ao efetuar Login.");
+					}
+			
+				});
 			}
-			else {
-				alert("Falha ao efetuar Login.");
-			}
+		  },
+		   error: function(jqXHR, textStatus, errorThrown) {
+                if(jqXHR.status == 500)
+				{
+					alert("Erro ao efetuar Login.");
+				}
+				else if(jqXHR.status == 666)
+				{
+					alert("Erro da base de dados.");
+				}
+          }
 		});
 	}
 

@@ -16,7 +16,7 @@
 }
 
 .container{
-	padding-bottom:50px; /* Height of the footer element */
+	/* padding-bottom:50px; Height of the footer element */
 }
 
 .footer {
@@ -92,8 +92,6 @@
     text-align:center;
 
 	background-image: url(http://www.xcelchassiswest.com/images/function_images/profile_pictures/no_user_pic.png);
-	background-repeat: no-repeat;
-	background-position: 50%;
   
 }
 
@@ -118,7 +116,6 @@
 	
 	font-family: Arial,Helvetica,sans-serif;
 	font-size: 16px;
-    color: rgba(26,161,225,1);
 	
     line-height:20px;
     text-align:center;
@@ -306,19 +303,12 @@
 	margin-left: 10px;
 	margin-right: 10px;
 	
-	border-radius: 5px;
-	border: 1px solid rgb(125,143,148);
-}
-
-.project_container{
-	max-width: 100%;
-	margin-left: 10px;
-	margin-right: 10px;
+	/*border-radius: 5px;*/
+	/*border: 1px solid rgb(125,143,148);*/
 	
-	border-radius: 5px;
-	border: 1px solid rgb(125,143,148);
+	background-color: white;
 	
-	margin-bottom: 10px;
+	border-bottom: 1px solid rgb(220,220,220);
 }
 
 .project_container .project_title{
