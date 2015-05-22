@@ -1,64 +1,27 @@
 <div class='container'>
-  <div class="form_partial">
-    <form name="satisfaction_form" ng-submit="submitForm(project.Id)">
-      <div class="form_title">
-        <span>Client Satisfaction Assessment</span>
-        <span>ADM{{project.ADM_Type}}</span>
+      <div class="form_partial">
+            <form name="mail_form" ng-submit="send_email(mail_form)">
+                  <div class="form-group" ng-class="{ 'has-error': contactform.inputName.$invalid && submitted }">
+                            <label for="inputName">Name</label>
+                                <input ng-model="formData.inputName" type="text" class="form-control" id="inputName" name="inputName" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': contactform.inputEmail.$invalid && submitted }">
+                            <label for="inputEmail">Email</label>
+                                <input ng-model="formData.inputEmail" type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': contactform.inputSubject.$invalid && submitted }">
+                            <label for="inputSubject">Subject</label>
+                                <input ng-model="formData.inputSubject" type="text" class="form-control" id="inputSubject" name="inputSubject" placeholder="Subject Message" required>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': contactform.inputMessage.$invalid && submitted }">
+                            <label for="inputMessage">Message</label>
+                                <textarea ng-model="formData.inputMessage" class="form-control" rows="6" cols="50" id="inputMessage" name="inputMessage" placeholder="Your message..." required></textarea>
+                        </div>
+                        <div class="form-group">
+                                <button type="submit" ng-disabled="submitButtonDisabled">
+                                    Send Message
+                                </button>
+                        </div>
+            </form>
       </div>
-      <div class="form_header">
-        <div class="form_header_section">
-          <span>Project</span>
-          <div class="project_info_1-1">
-            <span class="title">Title: {{project.Description}}</span>
-          </div>
-          <div class="project_info_1-2">
-            <span class="id">Id: {{project.Id}}</span>
-            <span class="assessment_date">Assessment Date: {{project.date}}</span>
-          </div>
-        </div>
-        <div class="form_header_section">
-          <span>Altran</span>
-          <div class="project_info_1-2">
-            <span class="id">Country: {{project.Country}}</span>
-            <span class="assessment_date">Sub-Division: {{project.Subdivision}}</span>
-            <span class="assessment_date">Name: {{project.First_Name}} {{project.Last_Name}}</span>
-          </div>
-          <div class="project_info_1-2">
-            <span class="id">Division: {{project.Division}}</span>
-            <span class="assessment_date">Manager: {{project.Manager}}</span>
-            <span class="assessment_date">Function: {{project.Function}}</span>
-          </div>
-        </div>
-      </div> 
-      <div ng-repeat="question in questions"">
-        <div class="form_question">
-          <span>
-            <label>{{question.description}}</label>
-          </span>
-          <div class="rating">
-            <input type="radio" ng-model="question.value" name="{{question.id}}" value="0" required/>
-            <span class="hide"></span>
-            <input type="radio" ng-model="question.value" name="{{question.id}}" value="1" required/>
-            <span></span>
-            <input type="radio" ng-model="question.value" name="{{question.id}}" value="2" required/>
-            <span></span>
-            <input type="radio" ng-model="question.value" name="{{question.id}}" value="3" required/>
-            <span></span>
-            <input type="radio" ng-model="question.value" name="{{question.id}}" value="4" required/>
-            <span></span>
-            <input type="radio" ng-model="question.value" name="{{question.id}}" value="5" required/>
-            <span></span>
-            
-          </div>
-          <div ng-show="question.value <= 2 && question.value !== 0" class="unsatisfaction">
-            <label>What are proposed improvement actions</label>
-            <span>
-              <textarea rows="6" cols="50" ng-model="question.comments"></textarea>
-            </span>
-          </div>
-        </div>
-      </div>
-      <input type="submit" value="Submit" class="submit_button">
-    </form>
-  </div>
 </div>

@@ -9,6 +9,7 @@ app.config(function ($routeProvider) {
 		.when("/allProjects", { templateUrl: 'partials/allProjects.html', controller: 'allProjectsController' })
 		.when("/inTimeProjects", { templateUrl: 'partials/inTimeProjects.html', controller: 'inTimeProjectsController' })
 		.when("/form/:ID", { templateUrl: 'partials/form.html', controller: 'formController' })
+		.when("/mail/:ID", { templateUrl: 'partials/mail.html', controller: 'mailController' })
 		.when("/test", { templateUrl: 'partials/test.html', controller: 'testController' })
 		.when("/parameters/:Id", { templateUrl: 'partials/parameters.html', controller: 'parametersController' })
 		.when("/parameters/:Id1/:Id2", { templateUrl: 'partials/parameters.html', controller: 'parametersController2' });
@@ -137,6 +138,45 @@ app.controller('inTimeProjectsController', function ($scope, $routeParams, $cook
 		var goTo = "form/" + id + "/";
 		$location.path(goTo);
 	}
+});
+
+app.controller('mailController', function ($scope, $http, $routeParams, $cookies, Global) {
+	$scope.Global = Global;
+	$scope.Global.buttonstyle = "";
+	$scope.result = 'hidden';
+    $scope.resultMessage;
+    $scope.formData;
+    $scope.submitButtonDisabled = false;
+    $scope.submitted = false; 
+    $scope.send_email = function(contactform) {
+        $scope.submitted = true;
+        $scope.submitButtonDisabled = true;
+        if (contactform.$valid) {
+            $http({
+                method  : 'POST',
+                url     : '/php/send_email.php',
+                data    : $.param($scope.formData),  //param method from jQuery
+                headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  //set the headers so angular passing info as form data (not request payload)
+            }).success(function(data){
+				alert('oi');
+                console.log(data);
+                if (data.success) { //success comes from the return json object
+                    $scope.submitButtonDisabled = true;
+                    $scope.resultMessage = data.message;
+                    $scope.result='bg-success';
+                } else {
+                    $scope.submitButtonDisabled = false;
+                    $scope.resultMessage = data.message;
+                    $scope.result='bg-danger';
+                }
+            });
+        } else {
+			alert('oi');
+            $scope.submitButtonDisabled = false;
+            $scope.resultMessage = 'Failed <img src="http://www.chaosm.net/blog/wp-includes/images/smilies/icon_sad.gif" alt=":(" class="wp-smiley">  Please fill out all the fields.';
+            $scope.result='bg-danger';
+        }
+    }
 });
 
 app.controller('formController', function ($scope, $http, $routeParams, $cookies, Global) {
