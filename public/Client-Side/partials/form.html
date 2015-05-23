@@ -1,64 +1,33 @@
-<div class='container'>
-  <div class="form_partial">
-    <form name="satisfaction_form" ng-submit="submitForm(project.Id)">
-      <div class="form_title">
-        <span>Client Satisfaction Assessment</span>
-        <span>ADM{{project.ADM_Type}}</span>
-      </div>
-      <div class="form_header">
-        <div class="form_header_section">
-          <span>Project</span>
-          <div class="project_info_1-1">
-            <span class="title">Title: {{project.Description}}</span>
-          </div>
-          <div class="project_info_1-2">
-            <span class="id">Id: {{project.Id}}</span>
-            <span class="assessment_date">Assessment Date: {{project.date}}</span>
-          </div>
-        </div>
-        <div class="form_header_section">
-          <span>Altran</span>
-          <div class="project_info_1-2">
-            <span class="id">Country: {{project.Country}}</span>
-            <span class="assessment_date">Sub-Division: {{project.Subdivision}}</span>
-            <span class="assessment_date">Name: {{project.First_Name}} {{project.Last_Name}}</span>
-          </div>
-          <div class="project_info_1-2">
-            <span class="id">Division: {{project.Division}}</span>
-            <span class="assessment_date">Manager: {{project.Manager}}</span>
-            <span class="assessment_date">Function: {{project.Function}}</span>
-          </div>
-        </div>
-      </div> 
-      <div ng-repeat="question in questions"">
-        <div class="form_question">
-          <span>
-            <label>{{question.description}}</label>
-          </span>
-          <div class="rating">
-            <input type="radio" ng-model="question.value" name="{{question.id}}" value="0" required/>
-            <span class="hide"></span>
-            <input type="radio" ng-model="question.value" name="{{question.id}}" value="1" required/>
-            <span></span>
-            <input type="radio" ng-model="question.value" name="{{question.id}}" value="2" required/>
-            <span></span>
-            <input type="radio" ng-model="question.value" name="{{question.id}}" value="3" required/>
-            <span></span>
-            <input type="radio" ng-model="question.value" name="{{question.id}}" value="4" required/>
-            <span></span>
-            <input type="radio" ng-model="question.value" name="{{question.id}}" value="5" required/>
-            <span></span>
-            
-          </div>
-          <div ng-show="question.value <= 2 && question.value !== 0" class="unsatisfaction">
-            <label>What are proposed improvement actions</label>
-            <span>
-              <textarea rows="6" cols="50" ng-model="question.comments"></textarea>
-            </span>
-          </div>
-        </div>
-      </div>
-      <input type="submit" value="Submit" class="submit_button">
-    </form>
-  </div>
+<div class="form_partial">
+	<div class="container" style="overflow:auto;">
+		<div ng-if="done==1">
+			<form name="satisfaction_form" ng-submit="submitForm(project.Id)">
+		
+			  <div ng-repeat="question in questions">
+				<div class="form_question">
+				  <div class="qdesc"><span>{{question.number}} / </span>{{question.description}}</div>
+				  <div class="rating">
+					<input type="radio" ng-model="question.value" name="{{question.id}}" value="0" required/>
+					<span class="hide"></span>
+					<input type="radio" ng-model="question.value" name="{{question.id}}" value="1" required/>
+					<span></span>
+					<input type="radio" ng-model="question.value" name="{{question.id}}" value="2" required/>
+					<span></span>
+					<input type="radio" ng-model="question.value" name="{{question.id}}" value="3" required/>
+					<span></span>
+					<input type="radio" ng-model="question.value" name="{{question.id}}" value="4" required/>
+					<span></span>
+					<input type="radio" ng-model="question.value" name="{{question.id}}" value="5" required/>
+					<span></span>
+					
+				  </div>
+				  <div ng-show="question.value <= 2 && question.value !== 0" class="unsatisfaction">
+					  <textarea rows="6" cols="50" ng-model="question.comments" placeholder="What are proposed improvement actions"></textarea>
+				  </div>
+				</div>
+			  </div>
+			  <input type="submit" value="Submit" class="submitFormButton">
+			</form>
+		</div>
+	</div>
 </div>

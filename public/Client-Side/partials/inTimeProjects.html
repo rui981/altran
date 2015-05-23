@@ -1,26 +1,36 @@
-<div class='container'>
-	<div ng-repeat="p in projectos">
-		<div class="project_container" ng-click="openProject(p.Id)">
-			<div>
-				<div class="project_title">PROJETO</div>
-				<div class="project_name">{{p.Description}}</div>
-				
-				<div ng-if="p.Flag == 0" class="project_dispGreen"></div>
-				<div ng-if="p.Flag == 1" class="project_dispRed"></div>
-				<div class="project_disp">DISP</div>
-			</div>
-			
-			<div>
-				<div class="project_assdate">DATA</div>
-				<div class="project_date">{{p.date}}</div>
-				
-				<div class="project_typeadm">TIPO</div>
-				<div ng-if="p.ADM_Type == 1" class="project_adm">ADM1</div>
-				<div ng-if="p.ADM_Type == 2" class="project_adm">ADM2</div>
+<div class="projects_partial">
+	<div class='container'>
+		<div ng-repeat="p in projectos">
+			<div class="project_container" ng-click="openProject(p.Id)">
+
+				<div class="project_calendar">
+					<div class="calendar">
+						<div class="calendarDay">{{p.day}}</div>
+					</div>
+				</div>
+
+				<div class="timeline"></div>
+
+				<div ng-if="p.Flag == 0" class="circleGreen"></div>
+				<div ng-if="p.Flag == 0" class="circlep1"></div>
+				<div ng-if="p.Flag == 1" class="circleRed"></div>
+				<div ng-if="p.Flag == 1" class="circlep2"></div>
+	
+				<div class="project_text">
+					<div>
+						<div class="project_name">{{p.Description}}</div>
+					</div>
+					
+					<div>
+						<div class="project_date">Assessment Date: {{p.date}}</div>
+					</div>
+					
+					<div>
+						<div ng-if="p.ADM_Type == 1" class="project_adm">Type: ADM1</div>
+						<div ng-if="p.ADM_Type == 2" class="project_adm">Type: ADM2</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-
-<div class='footer'>
 </div>

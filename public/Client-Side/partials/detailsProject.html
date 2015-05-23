@@ -1,0 +1,35 @@
+<div class="form_partial">
+	<div class="container" style="overflow:auto;">
+		<div ng-if="done==1" class="details">
+		
+			<div class="details_title">{{project.Description}}</div>
+			
+			<div class="details_inline">
+				<div ng-click="formReply(project.Id)" ng-if="project.Flag==0" class="details_reply"></div>
+				<div ng-if="project.Flag==1" class="details_replyun"></div>
+				<div class="details_mail"></div>
+			</div>
+			
+			<!--<div class="details_inline">
+				<div class="inlineDetail">Email</div>
+				<div class="details_mail"></div>
+			</div>-->
+			
+			<div class="details_client">
+				<div class="leftDetail"><span class="iconid"></span><span class="text">{{project.Id}}</span></div>
+				<div class="leftDetail"><span class="icondate"></span><span class="text">{{project.date}}</span></div>
+			</div>
+			
+			<div class="details_title">Altran</div>
+			
+			<div class="details_client">
+				<div class="leftDetail"><span class="iconcountry"></span><span class="text">{{project.Country}}</span></div>
+				<div class="leftDetail"><span class="icondivision"></span><span class="text">{{project.Subdivision}}</span></div>
+				<div class="leftDetail"><span class="iconname"></span><span class="text">{{project.First_Name}} {{project.Last_Name}}</span></div>
+				<div class="leftDetail"><span class="iconmanager"></span><span class="text">{{project.Manager}}</span></div>
+				<div class="leftDetail"><span class="iconfunction"></span><span class="text">{{project.Function}}</span></div>
+			</div>
+			
+		</div>
+	</div>
+</div>

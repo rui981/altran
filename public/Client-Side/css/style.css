@@ -13,7 +13,7 @@ body{
 }
 
 .hide {
-  display:none;
+  display:none !important;
 }
 
 /* FONTS ------------------------------------------------------------------------------------------------ */
@@ -23,6 +23,21 @@ body{
   font-family: LUCIDA;
   src: url(../fonts/LucidaSansRegular.ttf);
 }
+
+@font-face {
+  font-family: ALEGREYA;
+  font-style: normal;
+  font-weight: 900;
+  src: local('Alegreya Sans SC Black'), local('AlegreyaSansSC-Black'), url(http://fonts.gstatic.com/s/alegreyasanssc/v3/AjAmkoP1y0Vaad0UPPR466YU_-P-PSoScPQN92M0xOA.woff2) format('woff2'), url(http://fonts.gstatic.com/s/alegreyasanssc/v3/AjAmkoP1y0Vaad0UPPR46-s4332CIbGY9ipgCXO5zgA.woff) format('woff');
+}
+
+@font-face {
+  font-family: SOURCESANS;
+  font-style: normal;
+  font-weight: 700;
+  src: local('Source Sans Pro Bold'), local('SourceSansPro-Bold'), url(http://fonts.gstatic.com/s/sourcesanspro/v9/toadOcfmlt9b38dHJxOBGEo0As1BFRXtCDhS66znb_k.woff2) format('woff2'), url(http://fonts.gstatic.com/s/sourcesanspro/v9/toadOcfmlt9b38dHJxOBGFkQc6VGVFSmCnC_l7QZG60.woff) format('woff');
+}
+
 
 
 /*----------------------------------------------------------------------*/
@@ -36,6 +51,7 @@ header {
   -moz-box-shadow: 0px 0px 15px -6px black;
   box-shadow: 0px 0px 15px -6px black;
   position: fixed;
+  z-index: 1020;
   
   /*top:0;*/
   
@@ -86,6 +102,8 @@ input:focus{
   right:0;
   left:0;
   overflow:auto;
+  
+   z-index: 1060;
 }
 
 .user_partial
@@ -101,6 +119,21 @@ input:focus{
 }
 
 .projects_partial
+{
+  min-height:100%;
+  width: 100%;
+  
+  background: -webkit-linear-gradient(rgb(37,183,230), rgb(49,125,188)); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(rgb(37,183,230), rgb(49,125,188)); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(rgb(37,183,230), rgb(49,125,188)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(rgb(37,183,230), rgb(49,125,188)); /* Standard syntax */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position:center center;
+  background-attachment: fixed;
+}
+
+.form_partial
 {
   min-height:100%;
   width: 100%;
@@ -292,8 +325,7 @@ input:focus{
 
 }
 
-.drawer-menu .drawer-menu-item{
-  border-bottom: 1px solid rgb(95,114,183);
+.drawer-menu .drawer-menu-item:nth-child(odd){
   padding: 15px 15px 15px;
   
   font-family: Arial,Helvetica,sans-serif;
@@ -302,6 +334,21 @@ input:focus{
   height: 20px;
   line-height: 20px;
   display: block;
+  
+  background-color: rgb(10,36,135);
+}
+
+.drawer-menu .drawer-menu-item:nth-child(even){
+  padding: 15px 15px 15px;
+  
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 16px;
+  color: white !important;
+  height: 20px;
+  line-height: 20px;
+  display: block;
+  
+  
 }
 
 .drawer-menu .drawer-menu-item:hover{
@@ -320,7 +367,7 @@ input:focus{
 }
 
 .drawer-menu .drawer-menu-item:nth-last-child(1){
-  border-bottom: 0px solid rgba(40,40,40,1.0);	
+  /*border-bottom: 0px solid rgba(40,40,40,1.0);*/	
 }
 
 .icon-home{
@@ -382,7 +429,6 @@ input:focus{
 
 .company_info{
   width: 100%;
-  border-top: 1px solid rgba(40,40,40,1.0);
   padding-top: 10px;
   margin-top: 15px;
 }
@@ -404,14 +450,18 @@ input:focus{
 /*TOP BAR STUFF------------------------------------------------------------*/
 
 .header_title{
-  display: inline-block;
-  width:100%;
-  line-height: 50px;
-  text-align: right;
+  float: right;
+  width: 59px;
+  height: 25px;
+  margin-top: 13px;
+  margin-right: 10px;
   
-  font-family: 'LUCIDA';
-  font-size: 15px;
+  background: url(../img/logos/logofont.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position:center center;
 }
+
 .header_title span {
   margin-right: 12px;
   color: #16addb;
@@ -542,12 +592,7 @@ input:focus{
 }
 
 /** Rating Forms **/
-.form_partial {
-  font-family: 'LUCIDA';
-  font-size: 0.75em;
-  color: #16addb;
-  margin: 5px;
-}
+
 .form_title {
   font-size: 1em;
   font-weight: bold;
@@ -592,14 +637,30 @@ div.project_info_1-2 > span{
   width: 100%;
   float: left;
 }
+
 .form_question {
-  border-bottom: 1px solid rgba(22, 173, 219, 0.8);
-  border-top: 1px solid rgba(22, 173, 219, 0.8);
+  border-bottom: 1px solid white;
   min-height: 40px;
-  margin-top: 10px;
-  float: left;
+  margin-top: 15px;
   width: 100%;
+  padding-bottom: 15px;
 }
+
+.form_question .qdesc{
+  color: white;
+  
+  font-family: 'LUCIDA';
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 10px;
+  padding-bottom: 10px;
+  
+}
+
+.qdesc span{
+	color: rgb(45,55,144);
+}
+
 .form_last_question {
   border-bottom: 1px solid rgba(22, 173, 219, 0.8);
   border-top: 1px solid rgba(22, 173, 219, 0.8);
@@ -608,16 +669,11 @@ div.project_info_1-2 > span{
   float: left;
   width: 100%;
 }
-.form_question > span {
-  width: 260px;
-  float: left;
-  height: 20px;
-  padding-left: 10px;
-  color: #8C8C8C;
-}
+
 .rating {
-  float: right;
   position: relative;
+  margin-left: 10px;
+  padding-bottom: 10px;
 }
 .rating input {
   position:absolute;
@@ -627,21 +683,29 @@ div.project_info_1-2 > span{
   opacity:0;
   cursor:pointer;
   width:17px;
+  transform: scale(2, 3);
 }
 .rating span {
-  width:24px;
-  height:16px;
-  line-height:16px;
-  padding: 0px 22px 0px 0;
-  background:url(../img/icons/triangles.png) no-repeat 0px 0;
+  width:35px;
+  height:32px;
+  /*padding: 0px 22px 0px 0;*/
+  
+  display:inline-block;
+  background-image:url(../img/icons/triangleSelected.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position:center center;
+  
+  margin-right: 5px;
 }
 .rating input:checked + span {
-  background-position:0px 0;
+  background-image:url(../img/icons/triangleSelected.png);
 }
 
 .rating input:checked + span ~ span {
-  background-position:-22px 0;
+  background-image:url(../img/icons/triangleUnselected.png);
 }
+
 .submit_button{
   font-family: LUCIDA;
   color:rgb(120,120,120);
@@ -661,12 +725,32 @@ div.project_info_1-2 > span{
   background-color: rgba(120,120,120,0.7);
   color:white;
 }
+
+.submitFormButton{
+	display: block;
+	height: 45px;
+	width: 150px;
+	font-family: LUCIDA;
+	font-size: 18px;
+	color: #787878;
+	text-align: center;
+	margin: 25px auto 0px;
+	background-color: rgba(255,255,255,0.8);
+	transition: all 0.3s ease 0s;
+	border: none;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	  
+  -webkit-appearance:none;
+  -moz-appearance:none; 
+  appearance:none;
+}
+
 .unsatisfaction {
-  height: 180px;
-  float: left;
+  height: 100px;
   width: 100%;
-  background-color: rgba(140, 140, 140, 0.4);
   margin-top: 5px;
+  
 }
 .unsatisfaction span {
   width: 100%;
@@ -677,9 +761,21 @@ div.project_info_1-2 > span{
 .unsatisfaction i {
   float: right;
 }
-.unsatisfaction span > textarea {
-  width: 335px;
+.unsatisfaction textarea {
+  resize: none;
+  width: 85%;
+  height: 80px;
+  border-radius: 3px;
+  border-style: none; 
+  background-color: rgba(255,255,255,0.8);
+  line-height: 12px;
+  padding: 5px;
   
+  font-family: 'LUCIDA';
+  font-size: 12px;
+  color: rgb(50,60,70);
+  
+  margin-left: 10px;
 }
 
 /* MY Projects */
@@ -692,3 +788,216 @@ div.project_info_1-2 > span{
 	/*border-radius: 5px;*/
 }
 
+.details{
+	width: 85%;
+	margin: 0 auto;
+	
+	background-color: white;
+	overflow:auto;
+	padding-bottom:10px;
+}
+
+.details .iconid{
+  display:inline-block;
+  width: 19px;
+  height: 19px;
+  background-image: url("../img/icons/detailid.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+
+  margin-right: 5px;
+  margin-left: 10px;
+  vertical-align: top;
+}
+
+.details .icondate{
+  display:inline-block;
+  width: 19px;
+  height: 19px;
+  background-image: url("../img/icons/detaildate.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+
+  margin-right: 5px;
+  margin-left: 10px;
+  vertical-align: top;
+}
+
+.details .iconname{
+  display:inline-block;
+  width: 19px;
+  height: 19px;
+  background-image: url("../img/icons/detailname.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+
+  margin-right: 5px;
+  margin-left: 10px;
+  vertical-align: top;
+}
+
+.details .iconcountry{
+  display:inline-block;
+  width: 19px;
+  height: 19px;
+  background-image: url("../img/icons/detailcountry.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+
+  margin-right: 5px;
+  margin-left: 10px;
+  vertical-align: top;
+}
+
+.details .icondivision{
+  display:inline-block;
+  width: 19px;
+  height: 19px;
+  background-image: url("../img/icons/detaildivision.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+
+  margin-right: 5px;
+  margin-left: 10px;
+  vertical-align: top;
+}
+
+.details .iconfunction{
+  display:inline-block;
+  width: 19px;
+  height: 19px;
+  background-image: url("../img/icons/detailfunction.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+
+  margin-right: 5px;
+  margin-left: 10px;
+  vertical-align: top;
+}
+
+.details .iconmanager{
+  display:inline-block;
+  width: 19px;
+  height: 19px;
+  background-image: url("../img/icons/detailmanager.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+
+  margin-right: 5px;
+  margin-left: 10px;
+  vertical-align: top;
+}
+
+.details_reply{
+  display:inline-block;
+  width:49%;
+  height: 60px;
+  background-image: url("../img/icons/detailform.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+}
+
+.details_reply:hover, .details_mail:hover{
+	cursor: pointer;
+}
+
+.details_replyun{
+  display:inline-block;
+  width:49%;
+  height: 60px;
+  background-image: url("../img/icons/detailformun.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  opacity: 0.1;
+}
+
+
+.details_mail{
+  display:inline-block;
+  width:49%;
+  height: 60px;
+  background-image: url("../img/icons/detailemail.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+}
+
+.details .details_title{
+	width:100%;
+	text-align:center;
+	
+	font-family: 'LUCIDA';
+	font-size: 15px;
+	font-weight:bold;
+	color: rgb(22,178,226);
+	
+	margin-top:10px;
+	border-bottom: 1px solid rgb(210,210,210);
+	padding-bottom: 10px;
+}
+
+.details .details_title2{
+	width:100%;
+	text-align:center;
+	
+	font-family: 'LUCIDA';
+	font-size: 14px;
+	color: rgb(50,60,70);
+	margin-top:2px;
+}
+
+.leftDetail{
+	font-family: 'LUCIDA';
+	font-size: 12px;
+	color: rgb(50,60,70);
+	margin-top: 10px;
+	padding-bottom: 10px;
+	
+	border-bottom: 1px solid rgb(210,210,210);
+	vertical-align: top;
+}
+
+.details_inline{
+	border-bottom: 1px solid rgb(210,210,210);
+	width:100%;
+	margin-top: 10px;
+}
+
+.inlineDetail{
+	font-family: 'LUCIDA';
+	font-size: 12px;
+	color: rgb(50,60,70);
+	
+	padding-bottom: 10px;
+
+	vertical-align: top;
+	display:inline-block;
+	width:49%;
+	margin: 0px auto;
+	margin-top: 10px;
+}
+
+.leftDetail .text{
+	margin-left: 5px;
+}
+
+.loading{
+	display:block;
+	width:100px;
+	height: 100px;
+	
+	background-image: url("../img/icons/loading.gif");
+	background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+	margin: 0 auto;
+}

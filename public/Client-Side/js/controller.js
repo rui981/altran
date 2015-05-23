@@ -10,9 +10,7 @@ app.config(function ($routeProvider) {
 		.when("/inTimeProjects", { templateUrl: 'partials/inTimeProjects.html', controller: 'inTimeProjectsController' })
 		.when("/form/:ID", { templateUrl: 'partials/form.html', controller: 'formController' })
 		.when("/mail/:ID", { templateUrl: 'partials/mail.html', controller: 'mailController' })
-		.when("/test", { templateUrl: 'partials/test.html', controller: 'testController' })
-		.when("/parameters/:Id", { templateUrl: 'partials/parameters.html', controller: 'parametersController' })
-		.when("/parameters/:Id1/:Id2", { templateUrl: 'partials/parameters.html', controller: 'parametersController2' });
+		.when("/detailsProject/:ID", { templateUrl: 'partials/detailsProject.html', controller: 'detailsProjectController' })
 });
 
 app.run(function ($rootScope, $cookies, $location) {
@@ -41,6 +39,8 @@ app.controller('loginController', function ($scope, $rootScope, $location, $rout
 	$scope.Global = Global;
 	$scope.Global.buttonstyle = "width: 0px; height: 0px; margin-top: -9999px;";
 
+	$('.drawer').drawer('close');
+	
 	$scope.login = function () {
 		var username = document.getElementById("login_username").value;
 		var password = document.getElementById("login_password").value;
@@ -126,11 +126,10 @@ app.controller('allProjectsController', function ($scope, $routeParams, $cookies
 	var apiurl = "http://altran.sytes.net/projects/" + $cookies.get("userid");
 
 	$.get(apiurl).then(function (response) {
-		console.log(response);
 		
-		for(var i=0; i < $scope.projectos.length; i++)
+		for(var i=0; i < response.length; i++)
 		{
-			$scope.projectos[i].day = $scope.projectos[i].date.substring(0, 2); 
+			response[i].day = response[i].date.substring(0, 2); 
 		}
 		
 		$scope.$apply(function () {
@@ -140,7 +139,7 @@ app.controller('allProjectsController', function ($scope, $routeParams, $cookies
 	});
 
 	$scope.openProject = function (id) {
-		var goTo = "form/" + id + "/";
+		var goTo = "detailsProject/" + id + "/";
 		$location.path(goTo);
 	}
 });
@@ -153,11 +152,13 @@ app.controller('inTimeProjectsController', function ($scope, $routeParams, $cook
 
 	var apiurl = "http://altran.sytes.net/unProjects/" + $cookies.get("userid"); //TODO
 	
-	console.log(apiurl);
-	
 	$.get(apiurl).then(function (response) {
-		console.log(response);
-
+		
+		for(var i=0; i < response.length; i++)
+		{
+			response[i].day = response[i].date.substring(0, 2); 
+		}
+		
 		$scope.$apply(function () {
 			$scope.projectos = response;
 		});
@@ -165,7 +166,7 @@ app.controller('inTimeProjectsController', function ($scope, $routeParams, $cook
 	});
 
 	$scope.openProject = function (id) {
-		var goTo = "form/" + id + "/";
+		var goTo = "detailsProject/" + id + "/";
 		$location.path(goTo);
 	}
 });
@@ -173,6 +174,10 @@ app.controller('inTimeProjectsController', function ($scope, $routeParams, $cook
 app.controller('mailController', function ($scope, $http, $routeParams, $cookies, Global) {
 	$scope.Global = Global;
 	$scope.Global.buttonstyle = "";
+	
+	$('.drawer').drawer('close');
+	
+	
 	$scope.result = 'hidden';
     $scope.resultMessage;
     $scope.formData;
@@ -210,8 +215,8 @@ app.controller('mailController', function ($scope, $http, $routeParams, $cookies
 });
 
 app.controller('formController', function ($scope, $http, $routeParams, $cookies, Global) {
-	$scope.Global = Global;
-	$scope.Global.buttonstyle = "";
+	$scope.done = 0;
+	
 
 	$('.drawer').drawer('close');
 
@@ -219,26 +224,47 @@ app.controller('formController', function ($scope, $http, $routeParams, $cookies
 	$.get(apiurl).then(function (response) {
 		var data = response[0];
 		console.log(data);
+		
 		$scope.$apply(function () {
 			$scope.project = data;
 		});
 	});
-	apiurl = "http://altran.sytes.net/questions/" + $routeParams.ID;
-
-	$.get(apiurl).then(function (response) {
+	
+	var apiurl2 = "http://altran.sytes.net/questions/" + $routeParams.ID;
+	$.get(apiurl2).then(function (response) {
 		var data = response;
 
 		var json = [];
+		console.log(data);
 		for (var i = 0; i < data.length; i++) {
 			var temp = {};
+			
+			if(i>0 && i<data.length-1) //Serve para deixar os números das perguntas mais bonitas no CSS
+			{
+				if(i<10)
+				{
+					temp["number"] = "0" + i;
+				}
+				else
+				{
+					temp["number"] = i;
+				}
+				temp["description"] = data[i].Description.split(".")[1]; 
+			}
+			else
+			{
+				temp["number"] = "#";
+				temp["description"] = data[i].Description;
+			}
+				
 			temp["question_id"] = data[i].Question_Id;
 			temp["value"] = 0;
-			temp["description"] = data[i].Description;
 			temp["comments"] = "";
 			json.push(temp);
 		}
 
 		$scope.$apply(function () {
+			$scope.done = 1;
 			$scope.questions = json;
 		});
 	});
@@ -273,6 +299,7 @@ app.controller('formController', function ($scope, $http, $routeParams, $cookies
 			assessement_id: id,
 			answers: []
 		};
+		
 		for (var i = 0; i < formData.length; i++) {
 			var temp = {};
 			temp["id_pergunta"] = formData[i].question_id;
@@ -280,9 +307,10 @@ app.controller('formController', function ($scope, $http, $routeParams, $cookies
 			temp["description"] = formData[i].comments;
 			json.answers.push(temp);
 		}
-		var apiurl = "http://altran.sytes.net/answer/";
+		
+		var apiurl3 = "http://altran.sytes.net/answer/";
 		$http({
-	        url: apiurl,
+	        url: apiurl3,
 	        method: 'POST',
 	        data: json,
 			dataType: "json"
@@ -297,18 +325,29 @@ app.controller('formController', function ($scope, $http, $routeParams, $cookies
 });
 
 
-app.controller('testController', function ($scope, $routeParams, $window) {
+app.controller('detailsProjectController', function ($scope, $http, $location, $routeParams, $cookies, Global) {
+	
+	$scope.done = 0;
 	$('.drawer').drawer('close');
+	
+	var apiurl = "http://altran.sytes.net/project/" + $routeParams.ID;
+	
+	$.get(apiurl).then(function (response) {
+		var data = response[0];
+		
+		$scope.$apply(function () {
+			$scope.project = data;
+			$scope.done = 1;
+		});
+	});
+	
+	$scope.formReply = function (id) {
+		var goTo = "form/" + id + "/";
+		$location.path(goTo);
+	}
+	
 });
 
-app.controller('parametersController', function ($scope, $routeParams, $window) {
-	//window.location.reload();
-	$scope.Id = $routeParams.Id;
-});
-
-app.controller('parametersController2', function ($scope, $routeParams) {
-	$scope.Id = $routeParams.Id2;
-});
 
 
 
