@@ -307,9 +307,10 @@
 
 .project_container{
 	display:block;
-	max-width: 100%;
+	max-width: 414px;
 	margin-left: 10px;
 	margin-right: 10px;
+	margin: 0 auto;
 	
 	height: 100%;
 	min-height: 30px;
@@ -327,12 +328,11 @@
 }
 
 .involver{
-	margin: 0 0;
-	width: 100%;
-	position: static;
+	margin: 0px auto;
+	width: 44%;
+	position: relative;
 	height: 100%;
-	padding-bottom: 0px;
-	
+	padding-bottom: 10px;
 }
 
 .project_container .project_calendar{
@@ -589,18 +589,19 @@
 }
 
 .form_question .qdesc{
-	margin-left: 10px;
+	margin-left: 15%;
 	margin-right: 10px;
 }
 
 .rating{
-	margin-left: 10px;
+	margin-left: 19%;
 	margin-top: 10px;
 }
 
 .unsatisfaction textarea{
-	margin-left: 10px;
-	width: 85%;
+	margin-left: 19%;
+	width: 65%;
 }
+
 
 

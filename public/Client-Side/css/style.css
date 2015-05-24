@@ -1001,3 +1001,288 @@ div.project_info_1-2 > span{
     background-position: center center;
 	margin: 0 auto;
 }
+
+/* Projects */
+
+.project_container{
+	display:block;
+	max-width: 414px;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin: 0 auto;
+	
+	height: 100%;
+	min-height: 30px;
+	
+	background-color: white;
+	
+	border-bottom: 1px solid rgb(220,220,220);
+	line-height: 0px;
+	position: relative;
+	padding-bottom: 10px;
+}
+
+.project_container:hover{
+	cursor: pointer;
+}
+
+.involver{
+	margin: 0px auto;
+	width: 44%;
+	position: relative;
+	height: 100%;
+	padding-bottom: 10px;
+}
+
+.project_container .project_calendar{
+	display: inline-block;
+	vertical-align: top;
+	width: 50px;
+	height: 100%;
+	
+	margin-left: 10px;
+}
+
+.project_calendar .calendar{
+	display: block;
+	
+	overflow:hidden;
+	
+	width: 50px;
+	height: 50px;
+	
+	background-image: url("../img/icons/calendar.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	
+	margin-top: 10px;
+}
+
+.calendar .calendarDay{
+	display:block;
+	
+	color: white;
+	font-family: 'ALEGREYA';
+	font-size:36px;
+	line-height: 36px;
+	
+	text-align: center;
+	vertical-align: top;
+	margin-top: 8px;
+	
+	
+}
+
+.timeline{
+	position: absolute;
+	width: 2px;
+	height: 100%;
+	background-color: rgb(220,220,220);
+	
+	left: 80px;
+	top: 0px;
+}
+
+.circleGreen{
+	width: 24px;
+	height: 24px;
+	border-radius:24px;
+	
+	background-color: rgb(46, 204, 113);
+	position: absolute;
+	
+	top: 16px;
+	left: 69px;
+}
+
+.circleRed{
+	width: 24px;
+	height: 24px;
+	border-radius:24px;
+	
+	background-color: #c0392b;
+	position: absolute;
+	
+	top: 16px;
+	left: 69px;
+}
+
+.circlep1{
+	display:block;
+	position: absolute;
+	
+	width: 17px;
+	height: 17px;
+	
+	background-image: url("../img/icons/p1.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	
+	top: 19px;
+	left: 72px;
+}
+
+.circlep2{
+	display:block;
+	position: absolute;
+	
+	width: 12px;
+	height: 12px;
+	
+	background-image: url("../img/icons/p2.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	
+	top: 22px;
+	left: 75px;
+}
+
+.project_container .project_state{
+	display: inline-block;
+	width: 30px;
+	height: 100%;
+	
+	margin-left: 10px;
+	overflow:auto;
+	vertical-align: top;
+}
+
+.project_text{
+	display: inline-block;
+	max-width: 70%;
+	margin-left: 34px;
+}
+
+.project_container .project_title{
+	display: inline-block;
+	margin-left: 10px;
+	margin-top: 10px;
+	padding-left: 2px;
+	padding-right: 2px;
+	border-radius: 2px;
+	border: 1px solid rgb(9,113,206);
+	
+	color: rgb(9,113,206);
+	font-family: 'LUCIDA';
+	font-size: 12px;
+}
+
+.project_container .project_name{
+	display: inline-block;
+	margin-left: 5px;
+	margin-top: 8px;
+	
+	vertical-align: top;
+	
+	color: rgb(63,72,75);
+	font-family: 'LUCIDA';
+	font-size: 15px;
+	line-height: 20px;
+  
+}
+
+.project_container .project_assdate{
+	display: inline-block;
+	margin-right: 10px;
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-left: 2px;
+	padding-right: 2px;
+	border-radius: 2px;
+	border: 1px solid rgb(9,113,206);
+	
+	background-color: rgb(9,113,206);
+	color: white;
+	font-family: 'LUCIDA';
+	font-size: 12px;
+  
+}
+
+.project_container .project_date{
+	display: inline-block;
+	margin-top: 0px;
+	margin-left: 5px;
+	
+	vertical-align: top;
+
+	color: rgb(180,180,180);
+	font-family: 'LUCIDA';
+	font-size: 12px;
+	line-height: 20px;
+	
+	overflow: hidden;
+  
+}
+
+.project_container .project_typeadm{
+	display: inline-block;
+	margin-right: 10px;
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-left: 2px;
+	padding-right: 2px;
+	border-radius: 2px;
+	border: 1px solid rgb(9,113,206);
+	
+	background-color: rgb(9,113,206);
+	color: white;
+	font-family: 'LUCIDA';
+	font-size: 12px;
+  
+}
+
+.project_container .project_adm{
+	display: inline-block;
+	margin-top: 0px;
+	margin-left: 5px;
+	
+	vertical-align: top;
+
+	color: rgb(180,180,180);
+	font-family: 'LUCIDA';
+	font-size: 12px;
+	line-height: 20px;
+	
+	overflow: hidden;
+  
+}
+
+.project_container .project_disp{
+	float:right;
+	margin-top: 10px;
+	margin-right: 10px;
+	padding-left: 2px;
+	padding-right: 2px;
+	border-radius: 2px;
+	border: 1px solid rgb(9,113,206);
+	
+	color: rgb(9,113,206);
+	font-family: 'LUCIDA';
+	font-size: 12px;
+  
+}
+
+.project_container .project_dispGreen{
+	float:right;
+	margin-top: 15px;
+	margin-right: 10px;
+	border-radius: 50%;
+	width: 10px;
+	height: 10px; 
+	background-color: rgb(46, 204, 113);
+}
+
+.project_container .project_dispRed{
+	float:right;
+	margin-top: 15px;
+	margin-right: 10px;
+	border-radius: 50%;
+	width: 10px;
+	height: 10px; 
+	background-color: #c0392b;
+}
