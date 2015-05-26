@@ -308,7 +308,7 @@ app.controller('formController', function ($scope, $http, $routeParams, $cookies
 		}
 
 		$scope.$apply(function () {
-			$scope.done = 0;
+			$scope.done = 1;
 			$scope.questions = json;
 		});
 	});
@@ -398,6 +398,11 @@ app.controller('detailsProjectController', function ($scope, $http, $location, $
 	
 	$scope.formReply = function (id) {
 		var goTo = "form/" + id + "/";
+		$location.path(goTo);
+	}
+	
+	$scope.sendMail = function (id) {
+		var goTo = "mail/" + id + "/";
 		$location.path(goTo);
 	}
 	
