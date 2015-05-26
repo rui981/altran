@@ -69,14 +69,21 @@ app.controller('loginController', function ($scope, $rootScope, $location, $rout
 						$cookies.put("userid", data.Id, { expires: exp });
 						$cookies.put("username", username, { expires: exp });
 						$cookies.put("email", data.Email, { expires: exp });
+						
 		
 						$scope.Global.username = username;
 						$scope.Global.email = data.Email;
 						
 						if($scope.Global.imgLink != "")
+						{
 							$scope.Global.imgLink = "background-image: url('"+ data.Image_Link +"');";
+							$cookies.put("urlLink", "background-image: url('"+ data.Image_Link +"');" , { expires: exp });
+						}
 						else
+						{
 							$scope.Global.imgLink = "";
+							$cookies.put("urlLink", "" , { expires: exp });
+						}
 							
 						$location.path("allProjects");
 		
@@ -107,9 +114,11 @@ app.controller('loginController', function ($scope, $rootScope, $location, $rout
 	if ($cookies.get("userid") != undefined || $cookies.get("userid") != null) {
 		var uname = $cookies.get("username");
 		var email = $cookies.get("email");
+		var uLink = $cookies.get("urlLink");
 
 		$scope.Global.username = uname.toUpperCase();
 		$scope.Global.email = email;
+		$scope.Global.imgLink = uLink;
 		$scope.Global.fLetter = uname.charAt(0);
 
 		$location.path("allProjects");
@@ -142,6 +151,19 @@ app.controller('allProjectsController', function ($scope, $routeParams, $cookies
 		var goTo = "detailsProject/" + id + "/";
 		$location.path(goTo);
 	}
+	
+	if ($cookies.get("userid") != undefined || $cookies.get("userid") != null) {
+		var uname = $cookies.get("username");
+		var email = $cookies.get("email");
+		var uLink = $cookies.get("urlLink");
+
+		$scope.Global.username = uname.toUpperCase();
+		$scope.Global.email = email;
+		$scope.Global.imgLink = uLink;
+		$scope.Global.fLetter = uname.charAt(0);
+
+		$location.path("allProjects");
+	}
 });
 
 app.controller('inTimeProjectsController', function ($scope, $routeParams, $cookies, $location, Global) {
@@ -168,6 +190,17 @@ app.controller('inTimeProjectsController', function ($scope, $routeParams, $cook
 	$scope.openProject = function (id) {
 		var goTo = "detailsProject/" + id + "/";
 		$location.path(goTo);
+	}
+	
+	if ($cookies.get("userid") != undefined || $cookies.get("userid") != null) {
+		var uname = $cookies.get("username");
+		var email = $cookies.get("email");
+		var uLink = $cookies.get("urlLink");
+
+		$scope.Global.username = uname.toUpperCase();
+		$scope.Global.email = email;
+		$scope.Global.imgLink = uLink;
+		$scope.Global.fLetter = uname.charAt(0);
 	}
 });
 
@@ -212,6 +245,17 @@ app.controller('mailController', function ($scope, $http, $routeParams, $cookies
             $scope.result='bg-danger';
         }
     }
+	
+	if ($cookies.get("userid") != undefined || $cookies.get("userid") != null) {
+		var uname = $cookies.get("username");
+		var email = $cookies.get("email");
+		var uLink = $cookies.get("urlLink");
+
+		$scope.Global.username = uname.toUpperCase();
+		$scope.Global.email = email;
+		$scope.Global.imgLink = uLink;
+		$scope.Global.fLetter = uname.charAt(0);
+	}
 });
 
 app.controller('formController', function ($scope, $http, $routeParams, $cookies, Global) {
@@ -264,7 +308,7 @@ app.controller('formController', function ($scope, $http, $routeParams, $cookies
 		}
 
 		$scope.$apply(function () {
-			$scope.done = 1;
+			$scope.done = 0;
 			$scope.questions = json;
 		});
 	});
@@ -322,6 +366,17 @@ app.controller('formController', function ($scope, $http, $routeParams, $cookies
     		// or server returns response with an error status.
 		});
 	}
+	
+	if ($cookies.get("userid") != undefined || $cookies.get("userid") != null) {
+		var uname = $cookies.get("username");
+		var email = $cookies.get("email");
+		var uLink = $cookies.get("urlLink");
+
+		$scope.Global.username = uname.toUpperCase();
+		$scope.Global.email = email;
+		$scope.Global.imgLink = uLink;
+		$scope.Global.fLetter = uname.charAt(0);
+	}
 });
 
 
@@ -344,6 +399,17 @@ app.controller('detailsProjectController', function ($scope, $http, $location, $
 	$scope.formReply = function (id) {
 		var goTo = "form/" + id + "/";
 		$location.path(goTo);
+	}
+	
+	if ($cookies.get("userid") != undefined || $cookies.get("userid") != null) {
+		var uname = $cookies.get("username");
+		var email = $cookies.get("email");
+		var uLink = $cookies.get("urlLink");
+
+		$scope.Global.username = uname.toUpperCase();
+		$scope.Global.email = email;
+		$scope.Global.imgLink = uLink;
+		$scope.Global.fLetter = uname.charAt(0);
 	}
 	
 });

@@ -989,7 +989,7 @@ div.project_info_1-2 > span{
 .leftDetail .text{
 	margin-left: 5px;
 }
-
+ /*
 .loading{
 	display:block;
 	width:100px;
@@ -1001,6 +1001,7 @@ div.project_info_1-2 > span{
     background-position: center center;
 	margin: 0 auto;
 }
+*/ 
 
 /* Projects */
 
@@ -1286,3 +1287,7 @@ div.project_info_1-2 > span{
 	height: 10px; 
 	background-color: #c0392b;
 }
+
+/* LOADING ANIM */
+
+
