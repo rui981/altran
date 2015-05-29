@@ -8,8 +8,8 @@ body{
 }
 
 .drawer-default{
-  /*background-color: rgba(50,50,50,1.0);*/
-  background-color: rgba(17,44,147,1.0);
+  /*background-color: rgba(17,44,147,1.0);*/
+  background-color: rgb(52, 73, 94);
 }
 
 .hide {
@@ -268,7 +268,8 @@ input:focus{
   border-bottom: 1px solid rgb(95,114,183);
   padding-bottom: 20px;
   
-  background-color: rgb(95,114,183);
+  /*background-color: rgb(95,114,183);*/
+  background-color:rgb(87, 119, 154);
 }
 
 .client_info .client_logo{
@@ -335,7 +336,8 @@ input:focus{
   line-height: 20px;
   display: block;
   
-  background-color: rgb(10,36,135);
+  /*background-color: rgb(10,36,135);*/
+  background-color: rgb(44, 62, 80);
 }
 
 .drawer-menu .drawer-menu-item:nth-child(even){
@@ -989,7 +991,7 @@ div.project_info_1-2 > span{
 .leftDetail .text{
 	margin-left: 5px;
 }
-
+ 
 .loading{
 	display:block;
 	width:100px;
@@ -1001,6 +1003,7 @@ div.project_info_1-2 > span{
     background-position: center center;
 	margin: 0 auto;
 }
+
 
 /* Projects */
 
@@ -1285,4 +1288,144 @@ div.project_info_1-2 > span{
 	width: 10px;
 	height: 10px; 
 	background-color: #c0392b;
+}
+
+
+
+/* MAIL */
+
+.mailForm{
+	width: 80%;
+	margin: auto auto;
+}
+
+.mailForm .mail_box{
+  width:100%;
+  height: 45px;
+  border: 1px solid #fff;
+  margin-top: 10px;
+}
+
+.mail_box .mail_pipe{
+  display: inline-block;
+  height: 25px;
+  width: 1px;
+  background-color: white;
+  vertical-align: top;
+  margin-top: 10px;
+  margin-left: 10px;
+
+}
+
+.mail_box .mail_name{
+  height: 25px;
+  width: 25px;
+  display: inline-block;
+
+  background: url(../img/icons/user_white_icon.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position:center center;
+
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.mail_box .mail_mail{
+  height: 25px;
+  width: 25px;
+  display: inline-block;
+
+  background: url(../img/icons/mailicon.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position:center center;
+
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+
+.mail_box .mail_message{
+  height: 25px;
+  width: 25px;
+  display: inline-block;
+
+  background: url(../img/icons/messageicon.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position:center center;
+
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+
+.form-group{
+	display: inline-block;
+	width: 70%;
+	vertical-align: top;
+}
+
+.form-group textarea{
+	/* Firefox */
+	width: -moz-calc(100% - 11px);
+	/* WebKit */
+	width: -webkit-calc(100% - 11px);
+	/* Opera */
+	width: -o-calc(100% - 11px);
+	/* Standard */
+	width: calc(100% - 11px);
+
+	height: 100%;
+	color: #34495e;
+}
+
+.form-control{
+  display: inline-block;
+  width: 100%;
+  height: 45px;
+  background-color: rgba(255,255,255,0.0);
+  border: none;
+  resize: none;
+  line-height: 50px;
+  vertical-align: top;
+
+  font-family: LUCIDA;
+  font-size: 15px;
+  color:white;
+
+  margin-top: -1px;
+  margin-left: 10px;
+  
+  outline: none;
+  box-shadow:none;
+}
+
+.form-control:focus{
+	outline-width: 0px;
+	outline: none;
+}
+
+.mail_submit{
+  display: block;
+  height:  45px;
+  width: 100%;
+  font-family: LUCIDA;
+  font-size: 18px;
+  color:rgb(120,120,120);
+  line-height: 45px;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 25px;
+  background-color: white;
+  transition: all 0.3s ease 0s;
+  border:none;
+}
+
+.mail_submit:hover{
+	background-color: rgba(255,255,255,0.5);
+	color: white;
+	border: 1px solid white;
+	cursor: pointer;
 }

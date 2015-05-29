@@ -40,73 +40,85 @@ app.controller('loginController', function ($scope, $rootScope, $location, $rout
 	$scope.Global.buttonstyle = "width: 0px; height: 0px; margin-top: -9999px;";
 
 	$('.drawer').drawer('close');
-
+	
 	$scope.login = function () {
 		var username = document.getElementById("login_username").value;
 		var password = document.getElementById("login_password").value;
 
 		var apiurl = "http://altran.sytes.net/login";
 		var passwordhash = CryptoJS.MD5(password).toString();
-
+	
 		$.ajax({
-			url: apiurl,
-			type: "POST",
-			data: JSON.stringify({ name: username, pass: passwordhash }),
-			contentType: "application/json; charset=utf-8",
-			success: function (code, textStatus) {
-				if (code == 200) {
-					var apiurl2 = 'http://altran.sytes.net/user/"' + username + '"';
+		  url:apiurl,
+		  type:"POST",
+		  data: JSON.stringify({name : username, pass : passwordhash}),
+		  contentType:"application/json; charset=utf-8",
+		  success: function(code, textStatus){
+			if(code == 200)
+			{
+				var apiurl2 = 'http://altran.sytes.net/user/"' + username + '"' ;
 
-					$.get(apiurl2).then(function (response) {
-						var data = response[0];
-
-						if (data != undefined || data != null) {
-
-							var now = new Date();
-							var exp = new Date(now.getFullYear() + 1, now.getMonth(), now.getDate());
-
-							$cookies.put("userid", data.Id, { expires: exp });
-							$cookies.put("username", username, { expires: exp });
-							$cookies.put("email", data.Email, { expires: exp });
-
-							$scope.Global.username = username;
-							$scope.Global.email = data.Email;
-
-							if ($scope.Global.imgLink != "")
-								$scope.Global.imgLink = "background-image: url('" + data.Image_Link + "');";
-							else
-								$scope.Global.imgLink = "";
-
-							$location.path("allProjects");
-
-							$timeout(function () {
-								$scope.currentPath = $location.path();
-							}, 0);
+				$.get(apiurl2).then(function (response) {
+					var data = response[0];
+					
+					if (data != undefined || data != null) {
+						
+						var now = new Date();
+						var exp = new Date(now.getFullYear() + 1, now.getMonth(), now.getDate());
+		
+						$cookies.put("userid", data.Id, { expires: exp });
+						$cookies.put("username", username, { expires: exp });
+						$cookies.put("email", data.Email, { expires: exp });
+						
+		
+						$scope.Global.username = username;
+						$scope.Global.email = data.Email;
+						
+						if($scope.Global.imgLink != "")
+						{
+							$scope.Global.imgLink = "background-image: url('"+ data.Image_Link +"');";
+							$cookies.put("urlLink", "background-image: url('"+ data.Image_Link +"');" , { expires: exp });
 						}
-						else {
-							alert("Falha ao efetuar Login.");
+						else
+						{
+							$scope.Global.imgLink = "";
+							$cookies.put("urlLink", "" , { expires: exp });
 						}
-
-					});
-				}
-			},
-			error: function (jqXHR, textStatus, errorThrown) {
-                if (jqXHR.status == 500) {
+							
+						$location.path("allProjects");
+		
+						$timeout(function () {
+							$scope.currentPath = $location.path();
+						}, 0);
+					}
+					else {
+						alert("Falha ao efetuar Login.");
+					}
+			
+				});
+			}
+		  },
+		   error: function(jqXHR, textStatus, errorThrown) {
+                if(jqXHR.status == 500)
+				{
 					alert("Erro ao efetuar Login.");
 				}
-				else if (jqXHR.status == 666) {
+				else if(jqXHR.status == 666)
+				{
 					alert("Erro da base de dados.");
 				}
-			}
+          }
 		});
 	}
 
 	if ($cookies.get("userid") != undefined || $cookies.get("userid") != null) {
 		var uname = $cookies.get("username");
 		var email = $cookies.get("email");
+		var uLink = $cookies.get("urlLink");
 
 		$scope.Global.username = uname.toUpperCase();
 		$scope.Global.email = email;
+		$scope.Global.imgLink = uLink;
 		$scope.Global.fLetter = uname.charAt(0);
 
 		$location.path("allProjects");
@@ -123,11 +135,12 @@ app.controller('allProjectsController', function ($scope, $routeParams, $cookies
 	var apiurl = "http://altran.sytes.net/projects/" + $cookies.get("userid");
 
 	$.get(apiurl).then(function (response) {
-
-		for (var i = 0; i < response.length; i++) {
-			response[i].day = response[i].date.substring(0, 2);
+		
+		for(var i=0; i < response.length; i++)
+		{
+			response[i].day = response[i].date.substring(0, 2); 
 		}
-
+		
 		$scope.$apply(function () {
 			$scope.projectos = response;
 		});
@@ -137,6 +150,19 @@ app.controller('allProjectsController', function ($scope, $routeParams, $cookies
 	$scope.openProject = function (id) {
 		var goTo = "detailsProject/" + id + "/";
 		$location.path(goTo);
+	}
+	
+	if ($cookies.get("userid") != undefined || $cookies.get("userid") != null) {
+		var uname = $cookies.get("username");
+		var email = $cookies.get("email");
+		var uLink = $cookies.get("urlLink");
+
+		$scope.Global.username = uname.toUpperCase();
+		$scope.Global.email = email;
+		$scope.Global.imgLink = uLink;
+		$scope.Global.fLetter = uname.charAt(0);
+
+		$location.path("allProjects");
 	}
 });
 
@@ -149,11 +175,12 @@ app.controller('inTimeProjectsController', function ($scope, $routeParams, $cook
 	var apiurl = "http://altran.sytes.net/unProjects/" + $cookies.get("userid"); //TODO
 	
 	$.get(apiurl).then(function (response) {
-
-		for (var i = 0; i < response.length; i++) {
-			response[i].day = response[i].date.substring(0, 2);
+		
+		for(var i=0; i < response.length; i++)
+		{
+			response[i].day = response[i].date.substring(0, 2); 
 		}
-
+		
 		$scope.$apply(function () {
 			$scope.projectos = response;
 		});
@@ -164,11 +191,76 @@ app.controller('inTimeProjectsController', function ($scope, $routeParams, $cook
 		var goTo = "detailsProject/" + id + "/";
 		$location.path(goTo);
 	}
+	
+	if ($cookies.get("userid") != undefined || $cookies.get("userid") != null) {
+		var uname = $cookies.get("username");
+		var email = $cookies.get("email");
+		var uLink = $cookies.get("urlLink");
+
+		$scope.Global.username = uname.toUpperCase();
+		$scope.Global.email = email;
+		$scope.Global.imgLink = uLink;
+		$scope.Global.fLetter = uname.charAt(0);
+	}
 });
 
 app.controller('mailController', function ($scope, $http, $routeParams, $cookies, Global) {
 	$scope.Global = Global;
 	$scope.Global.buttonstyle = "";
+	
+	$('.drawer').drawer('close');
+	
+	
+	$scope.result = 'hidden';
+    $scope.resultMessage;
+    $scope.formData;
+    $scope.submitButtonDisabled = false;
+    $scope.submitted = false; 
+    $scope.send_email = function(contactform) {
+        $scope.submitted = true;
+        $scope.submitButtonDisabled = true;
+        if (contactform.$valid) {
+            $http({
+                method  : 'POST',
+                url     : '/php/send_email.php',
+                data    : $.param($scope.formData),  //param method from jQuery
+                headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  //set the headers so angular passing info as form data (not request payload)
+            }).success(function(data){
+				alert('oi');
+                console.log(data);
+                if (data.success) { //success comes from the return json object
+                    $scope.submitButtonDisabled = true;
+                    $scope.resultMessage = data.message;
+                    $scope.result='bg-success';
+                } else {
+                    $scope.submitButtonDisabled = false;
+                    $scope.resultMessage = data.message;
+                    $scope.result='bg-danger';
+                }
+            });
+        } else {
+			alert('oi');
+            $scope.submitButtonDisabled = false;
+            $scope.resultMessage = 'Failed <img src="http://www.chaosm.net/blog/wp-includes/images/smilies/icon_sad.gif" alt=":(" class="wp-smiley">  Please fill out all the fields.';
+            $scope.result='bg-danger';
+        }
+    }
+	
+	if ($cookies.get("userid") != undefined || $cookies.get("userid") != null) {
+		var uname = $cookies.get("username");
+		var email = $cookies.get("email");
+		var uLink = $cookies.get("urlLink");
+
+		$scope.Global.username = uname.toUpperCase();
+		$scope.Global.email = email;
+		$scope.Global.imgLink = uLink;
+		$scope.Global.fLetter = uname.charAt(0);
+	}
+});
+
+app.controller('formController', function ($scope, $http, $routeParams, $cookies, Global) {
+	$scope.done = 0;
+	
 
 	$('.drawer').drawer('close');
 
@@ -176,54 +268,12 @@ app.controller('mailController', function ($scope, $http, $routeParams, $cookies
 	$.get(apiurl).then(function (response) {
 		var data = response[0];
 		console.log(data);
-
+		
 		$scope.$apply(function () {
 			$scope.project = data;
 		});
 	});
 	
-	$scope.result = 'hidden';
-    $scope.formData;
-    $scope.submitButtonDisabled = false;
-    $scope.submitted = false;
-    $scope.send_email = function (contactform) {
-        $scope.submitted = true;
-        $scope.submitButtonDisabled = true;
-        if (contactform.$valid) {
-            $http({
-                method: 'POST',
-                url: '/php/send_email.php',
-                data: $.param($scope.formData),  //param method from jQuery
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }  //set the headers so angular passing info as form data (not request payload)
-            }).success(function (data) {
-                if (data.success) { //success comes from the return json object
-					alert("email sent");
-                } else {
-					alert("error");
-                }
-            });
-        } else {
-            $scope.submitButtonDisabled = false;
-        }
-    }
-});
-
-app.controller('formController', function ($scope, $http, $routeParams, $cookies, Global) {
-	$scope.done = 0;
-
-
-	$('.drawer').drawer('close');
-
-	var apiurl = "http://altran.sytes.net/project/" + $routeParams.ID;
-	$.get(apiurl).then(function (response) {
-		var data = response[0];
-		console.log(data);
-
-		$scope.$apply(function () {
-			$scope.project = data;
-		});
-	});
-
 	var apiurl2 = "http://altran.sytes.net/questions/" + $routeParams.ID;
 	$.get(apiurl2).then(function (response) {
 		var data = response;
@@ -232,22 +282,25 @@ app.controller('formController', function ($scope, $http, $routeParams, $cookies
 		console.log(data);
 		for (var i = 0; i < data.length; i++) {
 			var temp = {};
-
-			if (i > 0 && i < data.length - 1) //Serve para deixar os números das perguntas mais bonitas no CSS
+			
+			if(i>0 && i<data.length-1) //Serve para deixar os números das perguntas mais bonitas no CSS
 			{
-				if (i < 10) {
+				if(i<10)
+				{
 					temp["number"] = "0" + i;
 				}
-				else {
+				else
+				{
 					temp["number"] = i;
 				}
-				temp["description"] = data[i].Description.split(".")[1];
+				temp["description"] = data[i].Description.split(".")[1]; 
 			}
-			else {
+			else
+			{
 				temp["number"] = "#";
 				temp["description"] = data[i].Description;
 			}
-
+				
 			temp["question_id"] = data[i].Question_Id;
 			temp["value"] = 0;
 			temp["comments"] = "";
@@ -265,7 +318,7 @@ app.controller('formController', function ($scope, $http, $routeParams, $cookies
 			if ($scope.questions[i].value == 0) {
 				return false;
 			}
-			if ($scope.questions[i].value > 2 && $scope.questions[i].comments != '') {
+			if($scope.questions[i].value > 2 && $scope.questions[i].comments != '') {
 				alert($scope.questions[i].value);
 				return false;
 			}
@@ -278,19 +331,19 @@ app.controller('formController', function ($scope, $http, $routeParams, $cookies
 			delete $scope.validationFailed;
 			// code to go to the next step here
 		} else {
-
+			
 			$scope.validationFailed = true;
 			return false;
 		}
-
-
+		
+		
 		console.log("posting data....");
 		var formData = $scope.questions;
 		var json = {
 			assessement_id: id,
 			answers: []
 		};
-
+		
 		for (var i = 0; i < formData.length; i++) {
 			var temp = {};
 			temp["id_pergunta"] = formData[i].question_id;
@@ -298,51 +351,72 @@ app.controller('formController', function ($scope, $http, $routeParams, $cookies
 			temp["description"] = formData[i].comments;
 			json.answers.push(temp);
 		}
-		console.log(json);
+		
 		var apiurl3 = "http://altran.sytes.net/answer/";
 		$http({
-			url: apiurl3,
-			method: 'POST',
-			data: json,
+	        url: apiurl3,
+	        method: 'POST',
+	        data: json,
 			dataType: "json"
-		}).success(function (data, status, headers, config) {
-			alert(data);
-			// this callback will be called asynchronously
-			// when the response is available
-		}).error(function (data, status, headers, config) {
-			// called asynchronously if an error occurs
-			// or server returns response with an error status.
+		}).success(function(data, status, headers, config) {
+		    // this callback will be called asynchronously
+		    // when the response is available
+		}).error(function(data, status, headers, config) {
+    		// called asynchronously if an error occurs
+    		// or server returns response with an error status.
 		});
+	}
+	
+	if ($cookies.get("userid") != undefined || $cookies.get("userid") != null) {
+		var uname = $cookies.get("username");
+		var email = $cookies.get("email");
+		var uLink = $cookies.get("urlLink");
+
+		$scope.Global.username = uname.toUpperCase();
+		$scope.Global.email = email;
+		$scope.Global.imgLink = uLink;
+		$scope.Global.fLetter = uname.charAt(0);
 	}
 });
 
 
 app.controller('detailsProjectController', function ($scope, $http, $location, $routeParams, $cookies, Global) {
-
+	
 	$scope.done = 0;
 	$('.drawer').drawer('close');
-
+	
 	var apiurl = "http://altran.sytes.net/project/" + $routeParams.ID;
-
+	
 	$.get(apiurl).then(function (response) {
 		var data = response[0];
-
+		
 		$scope.$apply(function () {
 			$scope.project = data;
 			$scope.done = 1;
 		});
 	});
-
+	
 	$scope.formReply = function (id) {
 		var goTo = "form/" + id + "/";
 		$location.path(goTo);
 	}
-
+	
 	$scope.sendMail = function (id) {
 		var goTo = "mail/" + id + "/";
 		$location.path(goTo);
 	}
+	
+	if ($cookies.get("userid") != undefined || $cookies.get("userid") != null) {
+		var uname = $cookies.get("username");
+		var email = $cookies.get("email");
+		var uLink = $cookies.get("urlLink");
 
+		$scope.Global.username = uname.toUpperCase();
+		$scope.Global.email = email;
+		$scope.Global.imgLink = uLink;
+		$scope.Global.fLetter = uname.charAt(0);
+	}
+	
 });
 
 
