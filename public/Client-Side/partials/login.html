@@ -4,13 +4,15 @@
 		<div class="login_user">
 			<div class="login_user_name"></div>
 			<div class="login_pipe"></div>
-			<input type="text" id="login_username" class="login_textarea" placeholder="USERNAME"/>
+			<input type="text" id="login_username" class="login_textarea" placeholder="USERNAME" />
 		</div>
 		<div class="login_pass">
 			<div class="login_pass_name"></div>
 			<div class="login_pipe"></div>
-			<input ng-keyup="$event.keyCode == 13 && login()" type="password" id="login_password"  class="login_textarea" placeholder="PASSWORD"/>
+			<input ng-keyup="$event.keyCode == 13 && login()" type="password" id="login_password" class="login_textarea" placeholder="PASSWORD"
+			/>
 		</div>
 		<div ng-click="login()" class="login_button">LOGIN</div>
+		<div class="loginerror" ng-if="loginfailed>0">{{loginerrormessage}}</div>
 	</div>
 </div>
