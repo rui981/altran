@@ -287,7 +287,7 @@ input:focus{
   
   background-image: url(http://www.xcelchassiswest.com/images/function_images/profile_pictures/no_user_pic.png);
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-position: center center;
   /*background-size: 110% 110%;*/
   
