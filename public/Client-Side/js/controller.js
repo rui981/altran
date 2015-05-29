@@ -42,7 +42,11 @@ app.controller('loginController', function ($scope, $rootScope, $location, $rout
 	$('.drawer').drawer('close');
 	$scope.loginfailed = 0;
 	$scope.loginerrormessage = "";
+	
 	$scope.login = function () {
+		$scope.loginfailed = 0;
+		$scope.loginerrormessage = "";
+		
 		var username = document.getElementById("login_username").value;
 		var password = document.getElementById("login_password").value;
 
@@ -55,6 +59,7 @@ app.controller('loginController', function ($scope, $rootScope, $location, $rout
 			data: JSON.stringify({ name: username, pass: passwordhash }),
 			contentType: "application/json; charset=utf-8",
 			success: function (code, textStatus) {
+				console.log(code + " " + textStatus);
 				if (code == 200) {
 					var apiurl2 = 'http://altran.sytes.net/user/"' + username + '"';
 
@@ -96,6 +101,13 @@ app.controller('loginController', function ($scope, $rootScope, $location, $rout
 							});
 						}
 
+					});
+				}
+				else
+				{
+					$scope.$apply(function () {
+						$scope.loginfailed = 1;
+						$scope.loginerrormessage = "Unsuccessful Login";
 					});
 				}
 			},

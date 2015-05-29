@@ -1429,3 +1429,17 @@ div.project_info_1-2 > span{
 	border: 1px solid white;
 	cursor: pointer;
 }
+
+/* ERRORS */
+
+.loginerror{
+	width: 100%;
+	height: 40px;
+	font-family: LUCIDA;
+	font-size: 16px;
+	line-height: 40px;
+	text-align: center;
+	color: white;
+	background-color: rgb(231, 76, 60);
+	transition: all 0.3s ease 0s;
+}
