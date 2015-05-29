@@ -343,10 +343,28 @@ app.controller('formController', function ($scope, $http, $routeParams, $cookies
 		} else if (allQuestionsAnswered() == 1) {
 			$scope.formfailed = 1;
 			$scope.formerrormessage = "Please answer to all questions!";
+			
+			var formerrortimer = setInterval( function() { 
+								$scope.$apply(function () {
+									$scope.formfailed = 0;
+									$scope.formerrormessage = "";
+								});
+								clearInterval(formerrortimer);
+						}, 5000);
+			
 			return false;
 		} else if (allQuestionsAnswered() == 2) {
 			$scope.formfailed = 2;
 			$scope.formerrormessage = "Incorrect Form submited!";
+			
+			var formerrortimer = setInterval( function() { 
+								$scope.$apply(function () {
+									$scope.formfailed = 0;
+									$scope.formerrormessage = "";
+								});
+								clearInterval(formerrortimer);
+						}, 5000);
+						
 			return false;
 		}
 
