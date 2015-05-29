@@ -279,7 +279,6 @@ app.controller('formController', function ($scope, $http, $routeParams, $cookies
 		var data = response;
 
 		var json = [];
-		console.log(data);
 		for (var i = 0; i < data.length; i++) {
 			var temp = {};
 			
@@ -351,7 +350,7 @@ app.controller('formController', function ($scope, $http, $routeParams, $cookies
 			temp["description"] = formData[i].comments;
 			json.answers.push(temp);
 		}
-		
+		console.log(json);
 		var apiurl3 = "http://altran.sytes.net/answer/";
 		$http({
 	        url: apiurl3,
@@ -359,6 +358,7 @@ app.controller('formController', function ($scope, $http, $routeParams, $cookies
 	        data: json,
 			dataType: "json"
 		}).success(function(data, status, headers, config) {
+			alert(data);
 		    // this callback will be called asynchronously
 		    // when the response is available
 		}).error(function(data, status, headers, config) {
