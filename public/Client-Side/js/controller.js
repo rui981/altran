@@ -42,11 +42,11 @@ app.controller('loginController', function ($scope, $rootScope, $location, $rout
 	$('.drawer').drawer('close');
 	$scope.loginfailed = 0;
 	$scope.loginerrormessage = "";
-	
+
 	$scope.login = function () {
 		$scope.loginfailed = 0;
 		$scope.loginerrormessage = "";
-		
+
 		var username = document.getElementById("login_username").value;
 		var password = document.getElementById("login_password").value;
 
@@ -103,8 +103,7 @@ app.controller('loginController', function ($scope, $rootScope, $location, $rout
 
 					});
 				}
-				else
-				{
+				else {
 					$scope.$apply(function () {
 						$scope.loginfailed = 1;
 						$scope.loginerrormessage = "Unsuccessful Login";
@@ -241,7 +240,6 @@ app.controller('mailController', function ($scope, $http, $routeParams, $cookies
                 data: $.param($scope.formData),  //param method from jQuery
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }  //set the headers so angular passing info as form data (not request payload)
             }).success(function (data) {
-				alert('oi');
                 console.log(data);
                 if (data.success) { //success comes from the return json object
                     $scope.submitButtonDisabled = true;
@@ -275,7 +273,8 @@ app.controller('mailController', function ($scope, $http, $routeParams, $cookies
 
 app.controller('formController', function ($scope, $http, $routeParams, $cookies, Global) {
 	$scope.done = 0;
-
+	$scope.formfailed = 0;
+	$scope.formerrormessage = "";
 
 	$('.drawer').drawer('close');
 
@@ -327,26 +326,29 @@ app.controller('formController', function ($scope, $http, $routeParams, $cookies
 	function allQuestionsAnswered() {
 		for (var i = 0; i < $scope.questions.length; i++) {
 			if ($scope.questions[i].value == 0) {
-				return false;
+				return 1;
 			}
 			if ($scope.questions[i].value > 2 && $scope.questions[i].comments != '') {
 				alert($scope.questions[i].value);
-				return false;
+				return 2;
 			}
 		}
-		return true;
+		return 0;
 	}
 
 	$scope.submitForm = function (id) {
-		if (allQuestionsAnswered()) {
-			delete $scope.validationFailed;
+		if (allQuestionsAnswered() == 0) {
+			return true;
 			// code to go to the next step here
-		} else {
-
-			$scope.validationFailed = true;
+		} else if (allQuestionsAnswered() == 1) {
+			$scope.formfailed = 1;
+			$scope.formerrormessage = "Please answer to all questions!";
+			return false;
+		} else if (allQuestionsAnswered() == 2) {
+			$scope.formfailed = 2;
+			$scope.formerrormessage = "Incorrect Form submited!";
 			return false;
 		}
-
 
 		console.log("posting data....");
 		var formData = $scope.questions;
