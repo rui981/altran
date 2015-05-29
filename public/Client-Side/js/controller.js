@@ -337,9 +337,44 @@ app.controller('formController', function ($scope, $http, $routeParams, $cookies
 	}
 
 	$scope.submitForm = function (id) {
+	
 		if (allQuestionsAnswered() == 0) {
-			return true;
-			// code to go to the next step here
+			
+			console.log("posting data....");
+			var formData = $scope.questions;
+			var json = {
+				assessment_Id: id,
+				answers: []
+			};
+
+			for (var i = 0; i < formData.length; i++) {
+				var temp = {};
+				temp["id_pergunta"] = formData[i].question_id;
+				temp["value"] = formData[i].value;
+				temp["description"] = formData[i].comments;
+				json.answers.push(temp);
+			}
+			
+			console.log(json);
+			
+			var apiurl3 = "http://altran.sytes.net/answer/";
+			$http({
+				url: apiurl3,
+				method: 'POST',
+				data: json,
+				dataType: "json"
+			}).success(function (data, status, headers, config) {
+				alert(data);
+				alert(status);
+				alert(headers);
+				alert(config);
+				// this callback will be called asynchronously
+				// when the response is available
+			}).error(function (data, status, headers, config) {
+				// called asynchronously if an error occurs
+				// or server returns response with an error status.
+			});
+			
 		} else if (allQuestionsAnswered() == 1) {
 			$scope.formfailed = 1;
 			$scope.formerrormessage = "Please answer to all questions!";
@@ -367,36 +402,6 @@ app.controller('formController', function ($scope, $http, $routeParams, $cookies
 						
 			return false;
 		}
-
-		console.log("posting data....");
-		var formData = $scope.questions;
-		var json = {
-			assessement_id: id,
-			answers: []
-		};
-
-		for (var i = 0; i < formData.length; i++) {
-			var temp = {};
-			temp["id_pergunta"] = formData[i].question_id;
-			temp["value"] = formData[i].value;
-			temp["description"] = formData[i].comments;
-			json.answers.push(temp);
-		}
-		console.log(json);
-		var apiurl3 = "http://altran.sytes.net/answer/";
-		$http({
-			url: apiurl3,
-			method: 'POST',
-			data: json,
-			dataType: "json"
-		}).success(function (data, status, headers, config) {
-			alert(data);
-			// this callback will be called asynchronously
-			// when the response is available
-		}).error(function (data, status, headers, config) {
-			// called asynchronously if an error occurs
-			// or server returns response with an error status.
-		});
 	}
 
 	if ($cookies.get("userid") != undefined || $cookies.get("userid") != null) {
