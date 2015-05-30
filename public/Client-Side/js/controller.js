@@ -3,6 +3,36 @@ var app = angular.module("AltranWebApp", ["ngRoute", "ngCookies"])
 	return {};
 });
 
+app.factory('AlertService', function () {
+	var success = {},
+		error = {},
+		alert = false;
+	return {
+		getSuccess: function () {
+			return success;
+		},
+		setSuccess: function (value) {
+			success = value;
+			alert = true;
+		},
+		getError: function () {
+			return error;
+		},
+		setError: function (value) {
+			error = value;
+			alert = true;
+		},
+		reset: function () {
+			success = {};
+			error = {};
+			alert = false;
+		},
+		hasAlert: function () {
+			return alert;
+		}
+	}
+});
+
 app.config(function ($routeProvider) {
 	$routeProvider
 		.when("/", { templateUrl: 'partials/login.html', controller: 'loginController' })
@@ -142,11 +172,17 @@ app.controller('loginController', function ($scope, $rootScope, $location, $rout
 
 });
 
-app.controller('allProjectsController', function ($scope, $routeParams, $cookies, $location, Global) {
+app.controller('allProjectsController', function ($scope, $routeParams, $cookies, $location, AlertService, Global) {
 	$scope.Global = Global;
 	$scope.Global.buttonstyle = "";
 
 	$('.drawer').drawer('close');
+	$scope.successmsg = 0;
+if (AlertService.hasAlert()) {
+  $scope.success = AlertService.getSuccess();
+  $scope.successmsg = 1;
+  AlertService.reset();
+}
 
 	var apiurl = "http://altran.sytes.net/projects/" + $cookies.get("userid");
 
@@ -218,7 +254,7 @@ app.controller('inTimeProjectsController', function ($scope, $routeParams, $cook
 	}
 });
 
-app.controller('mailController', function ($scope, $http, $routeParams, $cookies, $location, Global) {
+app.controller('mailController', function ($scope, $http, $routeParams, $cookies, $location, AlertService, Global) {
 	$scope.Global = Global;
 	$scope.Global.buttonstyle = "";
 
@@ -230,7 +266,7 @@ app.controller('mailController', function ($scope, $http, $routeParams, $cookies
 	var apiurl = "http://altran.sytes.net/project/" + $routeParams.ID;
 	$.get(apiurl).then(function (response) {
 		var data = response[0];
-		
+
 		Email = data.Email;
 		Representative = data.First_Name + ' ' + data.Last_Name;
 	});
@@ -251,19 +287,14 @@ app.controller('mailController', function ($scope, $http, $routeParams, $cookies
                 data: $.param($scope.formData),  //param method from jQuery
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }  //set the headers so angular passing info as form data (not request payload)
             }).success(function (data) {
-                
-                    $scope.submitButtonDisabled = true;
-                    $scope.resultMessage = data.message;
-                    $scope.result = 'bg-success';
-					var goTo = "allProjects/";
-		$location.path(goTo);
 
+				$scope.submitButtonDisabled = true;
+				$scope.resultMessage = data.message;
+				$scope.result = 'bg-success';
+				var goTo = "allProjects/";
+				AlertService.setSuccess({ show: true, msg: ' Mail sent successfully!' });
+				$location.path(goTo);
             });
-        } else {
-			alert('oi');
-            $scope.submitButtonDisabled = false;
-            $scope.resultMessage = 'Failed <img src="http://www.chaosm.net/blog/wp-includes/images/smilies/icon_sad.gif" alt=":(" class="wp-smiley">  Please fill out all the fields.';
-            $scope.result = 'bg-danger';
         }
     }
 
@@ -279,7 +310,7 @@ app.controller('mailController', function ($scope, $http, $routeParams, $cookies
 	}
 });
 
-app.controller('formController', function ($scope, $http, $routeParams, $cookies, $location, Global) {
+app.controller('formController', function ($scope, $http, $routeParams, $cookies, $location, AlertService, Global) {
 	$scope.done = 0;
 	$scope.formfailed = 0;
 	$scope.formerrormessage = "";
@@ -372,8 +403,9 @@ app.controller('formController', function ($scope, $http, $routeParams, $cookies
 				data: json,
 				dataType: "json"
 			}).success(function (data, status, headers, config) {
-									var goTo = "allProjects/";
-		$location.path(goTo);
+				var goTo = "allProjects/";
+				AlertService.setSuccess({ show: true, msg: 'Form submitted successfully!' });
+				$location.path(goTo);
 				// this callback will be called asynchronously
 				// when the response is available
 			}).error(function (data, status, headers, config) {
