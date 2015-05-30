@@ -89,7 +89,7 @@ app.controller('loginController', function ($scope, $rootScope, $location, $rout
 			data: JSON.stringify({ name: username, pass: passwordhash }),
 			contentType: "application/json; charset=utf-8",
 			success: function (code, textStatus) {
-				console.log(code + " " + textStatus);
+				//console.log(code + " " + textStatus);
 				if (code == 200) {
 					var apiurl2 = 'http://altran.sytes.net/user/"' + username + '"';
 
@@ -177,12 +177,22 @@ app.controller('allProjectsController', function ($scope, $routeParams, $cookies
 	$scope.Global.buttonstyle = "";
 
 	$('.drawer').drawer('close');
+	
 	$scope.successmsg = 0;
-if (AlertService.hasAlert()) {
-  $scope.success = AlertService.getSuccess();
-  $scope.successmsg = 1;
-  AlertService.reset();
-}
+	
+	if (AlertService.hasAlert()) {
+	  $scope.success = AlertService.getSuccess();
+	  $scope.successmsg = 1;
+	  AlertService.reset();
+	  
+	  var succMsg = setInterval(function () {
+			$scope.$apply(function () {
+				$scope.successmsg = 0;
+				$scope.formerrormessage = "";
+			});
+			clearInterval(succMsg);
+		}, 5000);
+	}
 
 	var apiurl = "http://altran.sytes.net/projects/" + $cookies.get("userid");
 
@@ -223,7 +233,7 @@ app.controller('inTimeProjectsController', function ($scope, $routeParams, $cook
 
 	$('.drawer').drawer('close');
 
-	var apiurl = "http://altran.sytes.net/unProjects/" + $cookies.get("userid"); //TODO
+	var apiurl = "http://altran.sytes.net/unProjects/" + $cookies.get("userid");
 	
 	$.get(apiurl).then(function (response) {
 
@@ -279,7 +289,7 @@ app.controller('mailController', function ($scope, $http, $routeParams, $cookies
         $scope.submitButtonDisabled = true;
 		$scope.formData.Email = Email;
 		$scope.formData.Representative = Representative;
-		console.log($scope.formData);
+		//console.log($scope.formData);
         if (contactform.$valid) {
             $http({
                 method: 'POST',
@@ -320,7 +330,7 @@ app.controller('formController', function ($scope, $http, $routeParams, $cookies
 	var apiurl = "http://altran.sytes.net/project/" + $routeParams.ID;
 	$.get(apiurl).then(function (response) {
 		var data = response[0];
-		console.log(data);
+		//console.log(data);
 
 		$scope.$apply(function () {
 			$scope.project = data;
@@ -379,7 +389,7 @@ app.controller('formController', function ($scope, $http, $routeParams, $cookies
 
 		if (allQuestionsAnswered() == 0) {
 
-			console.log("posting data....");
+			//console.log("posting data....");
 			var formData = $scope.questions;
 			var json = {
 				assessment_Id: id,
@@ -394,7 +404,7 @@ app.controller('formController', function ($scope, $http, $routeParams, $cookies
 				json.answers.push(temp);
 			}
 
-			console.log(json);
+			//console.log(json);
 
 			var apiurl3 = "http://altran.sytes.net/answer/";
 			$http({
