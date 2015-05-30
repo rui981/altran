@@ -22,8 +22,30 @@ if (isset($_POST['inputName']) && isset($_POST['inputEmail']) && isset($_POST['i
   $mail->SMTPSecure = 'tls';
   $mail->SetFrom("altranteste@gmail.com", "Altran No-Reply");
   $mail->Subject = $_POST['inputSubject'];
-  $mail->Body = "\r\n\r\nMessage: " . stripslashes($_POST['inputMessage']);
-  $mail->AddAddress($_POST['inputEmail'], $_POST['inputName']);
+  $mail->AddEmbeddedImage("", "my-attach", "Logo_White.png");
+  
+  $mail->IsHTML(true);
+    $mail->AddEmbeddedImage('../img/logos/Logo_Mail.png', 'logoimg', 'Login_Logo.png'); 
+
+    //footer
+    $footer = "Regards<br/><br/>";
+    $footer .= '<table style="width: 95%">';
+    $footer .= '<tr>';
+    $footer .= '<td>';
+    $footer .= "<strong><span style='font-size: 15px'>Your Customer</span></strong><br/>
+                    " . stripslashes($_POST['inputName']). "<br/>
+                    Please reply to this e-mail<br/>
+                    Email: " . stripslashes($_POST['inputEmail']) . "<br/>";
+    $footer .= '</td></tr>';
+    
+    $footer .= '<tr><td style="text-align:left"><br/>';
+    $footer .= '<img src="cid:logoimg" width="100" height="100"/>';
+    $footer .= '</td><td>altran Innovation Makers</td>';
+    $footer .= '</tr>';
+    $footer .= '</table>';
+    $body = $_POST['inputMessage'] . "<br/><br/><br/>";
+    $mail->Body =  $body . $footer;
+  $mail->AddAddress($_POST['Email'], $_POST['Representative']);
   $mail->SMTPOptions = array(
     'ssl' => array(
         'verify_peer' => false,

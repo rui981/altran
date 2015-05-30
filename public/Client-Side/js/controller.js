@@ -218,21 +218,32 @@ app.controller('inTimeProjectsController', function ($scope, $routeParams, $cook
 	}
 });
 
-app.controller('mailController', function ($scope, $http, $routeParams, $cookies, Global) {
+app.controller('mailController', function ($scope, $http, $routeParams, $cookies, $location, Global) {
 	$scope.Global = Global;
 	$scope.Global.buttonstyle = "";
 
 	$('.drawer').drawer('close');
-
+	$scope.resultMessage;
+    $scope.formData;
+	var Email;
+	var Representative;
+	var apiurl = "http://altran.sytes.net/project/" + $routeParams.ID;
+	$.get(apiurl).then(function (response) {
+		var data = response[0];
+		
+		Email = data.Email;
+		Representative = data.First_Name + ' ' + data.Last_Name;
+	});
 
 	$scope.result = 'hidden';
-    $scope.resultMessage;
-    $scope.formData;
     $scope.submitButtonDisabled = false;
     $scope.submitted = false;
     $scope.send_email = function (contactform) {
         $scope.submitted = true;
         $scope.submitButtonDisabled = true;
+		$scope.formData.Email = Email;
+		$scope.formData.Representative = Representative;
+		console.log($scope.formData);
         if (contactform.$valid) {
             $http({
                 method: 'POST',
@@ -240,16 +251,13 @@ app.controller('mailController', function ($scope, $http, $routeParams, $cookies
                 data: $.param($scope.formData),  //param method from jQuery
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }  //set the headers so angular passing info as form data (not request payload)
             }).success(function (data) {
-                console.log(data);
-                if (data.success) { //success comes from the return json object
+                
                     $scope.submitButtonDisabled = true;
                     $scope.resultMessage = data.message;
                     $scope.result = 'bg-success';
-                } else {
-                    $scope.submitButtonDisabled = false;
-                    $scope.resultMessage = data.message;
-                    $scope.result = 'bg-danger';
-                }
+					var goTo = "allProjects/";
+		$location.path(goTo);
+
             });
         } else {
 			alert('oi');
@@ -271,7 +279,7 @@ app.controller('mailController', function ($scope, $http, $routeParams, $cookies
 	}
 });
 
-app.controller('formController', function ($scope, $http, $routeParams, $cookies, Global) {
+app.controller('formController', function ($scope, $http, $routeParams, $cookies, $location, Global) {
 	$scope.done = 0;
 	$scope.formfailed = 0;
 	$scope.formerrormessage = "";
@@ -337,9 +345,9 @@ app.controller('formController', function ($scope, $http, $routeParams, $cookies
 	}
 
 	$scope.submitForm = function (id) {
-	
+
 		if (allQuestionsAnswered() == 0) {
-			
+
 			console.log("posting data....");
 			var formData = $scope.questions;
 			var json = {
@@ -354,9 +362,9 @@ app.controller('formController', function ($scope, $http, $routeParams, $cookies
 				temp["description"] = formData[i].comments;
 				json.answers.push(temp);
 			}
-			
+
 			console.log(json);
-			
+
 			var apiurl3 = "http://altran.sytes.net/answer/";
 			$http({
 				url: apiurl3,
@@ -364,42 +372,40 @@ app.controller('formController', function ($scope, $http, $routeParams, $cookies
 				data: json,
 				dataType: "json"
 			}).success(function (data, status, headers, config) {
-				alert(data);
-				alert(status);
-				alert(headers);
-				alert(config);
+									var goTo = "allProjects/";
+		$location.path(goTo);
 				// this callback will be called asynchronously
 				// when the response is available
 			}).error(function (data, status, headers, config) {
 				// called asynchronously if an error occurs
 				// or server returns response with an error status.
 			});
-			
+
 		} else if (allQuestionsAnswered() == 1) {
 			$scope.formfailed = 1;
 			$scope.formerrormessage = "Please answer to all questions!";
-			
-			var formerrortimer = setInterval( function() { 
-								$scope.$apply(function () {
-									$scope.formfailed = 0;
-									$scope.formerrormessage = "";
-								});
-								clearInterval(formerrortimer);
-						}, 5000);
-			
+
+			var formerrortimer = setInterval(function () {
+				$scope.$apply(function () {
+					$scope.formfailed = 0;
+					$scope.formerrormessage = "";
+				});
+				clearInterval(formerrortimer);
+			}, 5000);
+
 			return false;
 		} else if (allQuestionsAnswered() == 2) {
 			$scope.formfailed = 2;
 			$scope.formerrormessage = "Incorrect Form submited!";
-			
-			var formerrortimer = setInterval( function() { 
-								$scope.$apply(function () {
-									$scope.formfailed = 0;
-									$scope.formerrormessage = "";
-								});
-								clearInterval(formerrortimer);
-						}, 5000);
-						
+
+			var formerrortimer = setInterval(function () {
+				$scope.$apply(function () {
+					$scope.formfailed = 0;
+					$scope.formerrormessage = "";
+				});
+				clearInterval(formerrortimer);
+			}, 5000);
+
 			return false;
 		}
 	}
