@@ -197,10 +197,32 @@ app.controller('allProjectsController', function ($scope, $routeParams, $cookies
 	var apiurl = "http://altran.sytes.net/projects/" + $cookies.get("userid");
 
 	$.get(apiurl).then(function (response) {
-
+		var today = new Date();
+		
 		for (var i = 0; i < response.length; i++) {
+			var projectDateSplit = response[i].date.split("-"); 
+			
 			response[i].day = response[i].date.substring(0, 2);
+			
+			if(response[i].day.charAt(1) == "-")
+			{
+				response[i].day = "0" + response[i].day.charAt(0);
+			}
+			
+			var date1 = new Date(today.getFullYear(),(today.getMonth()+1),today.getDate()); 
+			var date2 = new Date(projectDateSplit[2],projectDateSplit[1],projectDateSplit[0]);
+			var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+			var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+			
+			if(response[i].Flag == 0 && diffDays > 30)
+			{
+				response[i].Flag = 2;
+			}
+			
+			response[i].dayDiff = diffDays;
 		}
+		
+		
 
 		$scope.$apply(function () {
 			$scope.projectos = response;
@@ -239,6 +261,11 @@ app.controller('inTimeProjectsController', function ($scope, $routeParams, $cook
 
 		for (var i = 0; i < response.length; i++) {
 			response[i].day = response[i].date.substring(0, 2);
+			
+			if(response[i].day.charAt(1) == "-")
+			{
+				response[i].day = "0" + response[i].day.charAt(0);
+			}
 		}
 
 		$scope.$apply(function () {
@@ -469,11 +496,24 @@ app.controller('detailsProjectController', function ($scope, $http, $location, $
 
 	$scope.done = 0;
 	$('.drawer').drawer('close');
+	var today = new Date();
 
 	var apiurl = "http://altran.sytes.net/project/" + $routeParams.ID;
 
 	$.get(apiurl).then(function (response) {
 		var data = response[0];
+		
+		var projectDateSplit = data.date.split("-"); 
+		
+		var date1 = new Date(today.getFullYear(),(today.getMonth()+1),today.getDate()); 
+		var date2 = new Date(projectDateSplit[2],projectDateSplit[1],projectDateSplit[0]);
+		var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+		var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+		
+		if(data.Flag == 0 && diffDays > 30)
+		{
+			data.Flag = 2;
+		}
 
 		$scope.$apply(function () {
 			$scope.project = data;

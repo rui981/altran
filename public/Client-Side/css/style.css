@@ -1116,36 +1116,64 @@ div.project_info_1-2 > span{
 	left: 69px;
 }
 
+.circleYellow{
+	width: 24px;
+	height: 24px;
+	border-radius:24px;
+	
+	background-color: rgb(243, 156, 18);
+	position: absolute;
+	
+	top: 16px;
+	left: 69px;
+} 
+
 .circlep1{
 	display:block;
 	position: absolute;
 	
-	width: 17px;
-	height: 17px;
+	width: 16px;
+	height: 16px;
 	
 	background-image: url("../img/icons/p1.png");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
 	
-	top: 19px;
-	left: 72px;
+	top: 20px;
+	left: 73px;
 }
 
 .circlep2{
 	display:block;
 	position: absolute;
 	
-	width: 12px;
-	height: 12px;
+	width: 16px;
+	height: 16px;
 	
 	background-image: url("../img/icons/p2.png");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
 	
+	top: 20px;
+	left: 73px;
+}
+
+.circlep3{
+	display:block;
+	position: absolute;
+	
+	width: 14px;
+	height: 14px;
+	
+	background-image: url("../img/icons/p3.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	
 	top: 22px;
-	left: 75px;
+	left: 74px;
 }
 
 .project_container .project_state{
