@@ -1475,6 +1475,7 @@ div.project_info_1-2 > span{
 	color: white;
 	background-color: rgb(231, 76, 60);
 	transition: all 0.3s ease 0s;
+	margin-bottom:10px;
 }
 
 .formerror{

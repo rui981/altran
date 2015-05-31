@@ -195,9 +195,12 @@ app.controller('allProjectsController', function ($scope, $routeParams, $cookies
 	}
 
 	var apiurl = "http://altran.sytes.net/projects/" + $cookies.get("userid");
+	
+	
 
 	$.get(apiurl).then(function (response) {
 		var today = new Date();
+		
 		
 		for (var i = 0; i < response.length; i++) {
 			var projectDateSplit = response[i].date.split("-"); 
@@ -219,10 +222,16 @@ app.controller('allProjectsController', function ($scope, $routeParams, $cookies
 				response[i].Flag = 2;
 			}
 			
-			response[i].dayDiff = diffDays;
+			response[i].dateValue = parseInt(projectDateSplit[2])*100 + parseInt(projectDateSplit[1])*10 + parseInt(projectDateSplit[0])*1;
 		}
 		
-		
+		response.sort(function compare(a,b) {
+			  if (a.dateValue < b.dateValue)
+				return -1;
+			  if (a.dateValue > b.dateValue)
+				return 1;
+			  return 0;
+		});
 
 		$scope.$apply(function () {
 			$scope.projectos = response;
@@ -260,14 +269,25 @@ app.controller('inTimeProjectsController', function ($scope, $routeParams, $cook
 	$.get(apiurl).then(function (response) {
 
 		for (var i = 0; i < response.length; i++) {
+			var projectDateSplit = response[i].date.split("-"); 
 			response[i].day = response[i].date.substring(0, 2);
 			
 			if(response[i].day.charAt(1) == "-")
 			{
 				response[i].day = "0" + response[i].day.charAt(0);
 			}
+			
+			response[i].dateValue = parseInt(projectDateSplit[2])*100 + parseInt(projectDateSplit[1])*10 + parseInt(projectDateSplit[0])*1;
 		}
-
+		
+		response.sort(function compare(a,b) {
+			  if (a.dateValue < b.dateValue)
+				return -1;
+			  if (a.dateValue > b.dateValue)
+				return 1;
+			  return 0;
+		});
+		
 		$scope.$apply(function () {
 			$scope.projectos = response;
 		});
