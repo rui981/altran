@@ -6,7 +6,7 @@
 			
 			<div class="details_inline">
 				<div ng-click="formReply(project.Id)" ng-if="project.Flag==0" class="details_reply"></div>
-				<div ng-if="project.Flag>1" class="details_replyun"></div>
+				<div ng-if="project.Flag>=1" class="details_replyun"></div>
 				<div ng-click="sendMail(project.Id)" class="details_mail"></div>
 			</div>
 			

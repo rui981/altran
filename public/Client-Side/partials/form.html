@@ -25,7 +25,7 @@
 					
 				  </div>
 				  <div ng-show="question.value <= 2 && question.value !== 0" class="unsatisfaction">
-					  <textarea rows="6" cols="50" ng-model="question.comments" placeholder="What are proposed improvement actions"></textarea>
+					  <textarea rows="6" cols="50" ng-model="question.comments"  ng-attr-id="{{ 'textareaUn' + question.question_id }}" ng-if="question.value <= 2 && question.value !== 0" ng-init="focusTextarea(question.question_id)"  placeholder="What are proposed improvement actions"></textarea>
 				  </div>
 				</div>
 			  </div>

@@ -89,7 +89,7 @@ app.controller('loginController', function ($scope, $rootScope, $location, $rout
 			data: JSON.stringify({ name: username, pass: passwordhash }),
 			contentType: "application/json; charset=utf-8",
 			success: function (code, textStatus) {
-				//console.log(code + " " + textStatus);
+				console.log(code + " " + textStatus);
 				if (code == 200) {
 					var apiurl2 = 'http://altran.sytes.net/user/"' + username + '"';
 
@@ -431,7 +431,15 @@ app.controller('formController', function ($scope, $http, $routeParams, $cookies
 		}
 		return 0;
 	}
-
+	
+	$scope.focusTextarea = function (id) {
+		var idText = "#textareaUn" + id;
+		
+		setTimeout(function timeout(){
+			$(idText).focus();
+		}, 10);
+	}
+	
 	$scope.submitForm = function (id) {
 
 		if (allQuestionsAnswered() == 0) {
